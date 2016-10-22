@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CGContext {
+public extension CGContext {
 	
 	// 获取当前绘制对象
 	static func current() -> CGContext? {

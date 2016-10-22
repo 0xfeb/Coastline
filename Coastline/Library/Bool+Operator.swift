@@ -10,7 +10,17 @@ import Foundation
 
 extension Bool {
 	// 将T类型的对象打包起来
-	func pack<T>(_ t:T) -> T? {
+	func packOptional<T>(_ t:T) -> T? {
 		return self ? t : nil
+	}
+	
+	func ifTrue(_ action:@escaping ()->()) -> Bool {
+		if self { action() }
+		return self
+	}
+	
+	func ifFalse(_ action:@escaping ()->()) -> Bool {
+		if !self { action() }
+		return self
 	}
 }

@@ -10,7 +10,6 @@ import UIKit
 
 extension UIApplication {
 	private static let BASE_URL_KEY = "baseURL"
-	private static let LAST_VERSION_KEY = "lastVersion"
 	
 	// 获取应用的Scheme名称
 	var scheme:String? {

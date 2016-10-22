@@ -9,7 +9,7 @@
 import UIKit
 
 // 文本属性
-class CLAttributes {
+public class CLAttributes {
 	enum LineWidth:Int {
 		case none = 0x00
 		case single = 0x01
