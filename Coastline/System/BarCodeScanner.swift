@@ -10,6 +10,7 @@
 import UIKit
 import AVFoundation
 
+//TODO: 在手机上检测barcode
 public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	var session:AVCaptureSession?
 	var device:AVCaptureDevice?
@@ -19,7 +20,7 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 	
 	var fetchCode:(AVMetadataMachineReadableCodeObject) -> () = { _ in }
 	
-	override init() {
+	public override init() {
 		session = AVCaptureSession()
 		device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 		input = try! AVCaptureDeviceInput(device: device)
@@ -34,25 +35,25 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 		}
 	}
 	
-	func bindLayer(_ view:UIView) {
+	public func bindLayer(_ view:UIView) {
 		layer?.frame = view.bounds
 		layer?.masksToBounds = true
 		layer?.cornerRadius = 5.0
 		view.layer.addSublayer(layer!)
 	}
 	
-	func getCode(_ response:@escaping (AVMetadataMachineReadableCodeObject) -> ()) {
+	public func getCode(_ response:@escaping (AVMetadataMachineReadableCodeObject) -> ()) {
 		fetchCode = response
 		
 		let queue = DispatchQueue(label: "com.shutong.warehouse", attributes: [])
 		output?.setMetadataObjectsDelegate(self, queue: queue)
 	}
 	
-	func start() {
+	public func start() {
 		session?.startRunning()
 	}
 	
-	func stop() {
+	public func stop() {
 		session?.stopRunning()
 	}
 	

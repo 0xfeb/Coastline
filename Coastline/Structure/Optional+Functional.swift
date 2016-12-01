@@ -21,10 +21,3 @@ extension Optional {
 		return def
 	}
 }
-
-// 选择两个可选值中的存在值, 如果一个都不存在, 返回缺省值
-func choose<T>(_ v0:T?, _ v1:T?, def:T) -> T {
-	if let val = v0 { return val }
-	if let val = v1 { return val }
-	return def
-}

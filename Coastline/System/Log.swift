@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Log打印工具, 在打印的Log前, 加上一个标志引导
 public struct CLLog {
 	static func log(prefix:String, content:Any) {
 		print(prefix)

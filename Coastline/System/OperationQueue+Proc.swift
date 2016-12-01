@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CLProc<T> {
+public class CLProc<T> {
 	var queue:OperationQueue!
 	var method:()->T? = { nil }
 	
@@ -27,6 +27,7 @@ class CLProc<T> {
 	}
 }
 
+//将同步动作封装成异步模式的一种表达方式
 extension OperationQueue {
 	func proc<T>(_ method:@escaping ()->T?) -> CLProc<T> {
 		return CLProc(queue: self, method: method)

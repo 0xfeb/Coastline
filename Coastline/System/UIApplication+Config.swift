@@ -8,8 +8,10 @@
 
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
 	private static let BASE_URL_KEY = "baseURL"
+	private static let APP_VERSION_KEY = "CFBundleShortVersionString"
+	private static let BUILD_VERSION_KEY = "CFBundleVersion"
 	
 	// 获取应用的Scheme名称
 	var scheme:String? {
@@ -28,12 +30,12 @@ extension UIApplication {
 	
 	// 获取应用版本
 	var appVersion:String? {
-		get { return configString("CFBundleShortVersionString") }
+		get { return configString(UIApplication.APP_VERSION_KEY) }
 	}
 	
 	// 获取应用编译版本
 	var buildVerison:String? {
-		get { return configString("CFBundleVersion") }
+		get { return configString(UIApplication.BUILD_VERSION_KEY) }
 	}
 	
 	// 获取操作系统版本

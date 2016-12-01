@@ -23,7 +23,7 @@ public extension UIAlertController {
 		return self
 	}
 	
-	func add(cancel button:String = "取消", _ event:@escaping ()->Void = { _ in }) -> UIAlertController {
+	func add(cancel button:String, _ event:@escaping ()->Void = { _ in }) -> UIAlertController {
 		let action = UIAlertAction(title: button, style: .cancel) { _ in
 			event()
 		}
@@ -31,7 +31,7 @@ public extension UIAlertController {
 		return self
 	}
 	
-	func add(destruct button:String = "删除", _ event:@escaping ()->Void = { _ in }) -> UIAlertController {
+	func add(destruct button:String, _ event:@escaping ()->Void = { _ in }) -> UIAlertController {
 		let action = UIAlertAction(title: button, style: .destructive) { _ in
 			event()
 		}

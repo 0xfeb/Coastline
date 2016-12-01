@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UINavigationController {
+public extension UINavigationController {
 	func push(_ viewControllers:[UIViewController], animation:Bool) {
 		OperationQueue.main.addOperation {
 			let currentLink = self.viewControllers + viewControllers

@@ -8,15 +8,17 @@
 
 import Foundation
 
-extension String {
+public extension String {
 	// 将字符串写入文件
-	func save(_ path:String) -> Bool {
+	func writeTo(_ path:String) -> Bool {
 		return ((try? (self as NSString).write(toFile: path, atomically: true, encoding: String.Encoding.utf8.rawValue)) != nil)
 	}
 	
-	// 从文件读取到字符串
-	static func load(_ path:String) -> String? {
-		let s = try? NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
-		return s as String?
+	init?(fromFile path:String) {
+		if let s = try? NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) {
+			self = s as String
+		} else {
+			return nil
+		}
 	}
 }

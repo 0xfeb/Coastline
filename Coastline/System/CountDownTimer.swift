@@ -8,12 +8,13 @@
 
 import Foundation
 
-class CLCountDownTimer {
+//等待时间倒推的计时器
+public class CLCountDownTimer {
 	var currentCount:Int = 0
 	var cdEvent:(_ number:Int)->() = { _ in }
 	var timer:Timer?
 	
-	init(max:Int, event:@escaping (_ number:Int)->()) {
+	public init(max:Int, event:@escaping (_ number:Int)->()) {
 		currentCount = max
 		cdEvent = event
 		timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CLCountDownTimer.main), userInfo: nil, repeats: true)

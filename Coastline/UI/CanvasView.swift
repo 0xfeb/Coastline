@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CLCanvasView: UIView {
+public class CLCanvasView: UIView {
 	var drawEvent:(CGRect, CGContext)->() = { _ in }
 	
-	override func draw(_ rect: CGRect) {
+	override public func draw(_ rect: CGRect) {
 		if let context = UIGraphicsGetCurrentContext() {
 			context.saveGState()
 			drawEvent(rect, context)

@@ -8,11 +8,11 @@
 
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
 	private static let LAST_VERSION_KEY = "lastVersion"
 	
 	// 将当前版本设为最新版本
-	func saveCurrentAsNewVersion() {
+	public func saveCurrentAsNewVersion() {
 		if let version = self.appVersion {
 			OperationQueue().addOperation({
 				let ud = UserDefaults.standard
@@ -23,7 +23,7 @@ extension UIApplication {
 	}
 	
 	// 检查当前版本是否为最新版本
-	var isNewVersion:Bool {
+	public var isNewVersion:Bool {
 		let ud = UserDefaults.standard
 		if let version = ud.value(forKey: UIApplication.LAST_VERSION_KEY) as? String {
 			return version != self.appVersion

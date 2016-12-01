@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIStoryboard {
+public extension UIStoryboard {
 	static var main: UIStoryboard {
 		get {
 			return UIStoryboard(name: "Main", bundle: nil)
@@ -21,7 +21,7 @@ extension UIStoryboard {
 	}
 }
 
-extension UIViewController {
+public extension UIViewController {
 	func brotherViewController(_ name:String) -> UIViewController? {
 		return storyboard?.viewController(name)
 	}

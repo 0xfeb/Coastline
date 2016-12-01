@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension String {
+public extension String {
 	// 获取字符串的尺寸(单行)
 	func textSize(_ font:UIFont) -> CGSize {
 		return (self as NSString).size(attributes: [NSFontAttributeName:font])

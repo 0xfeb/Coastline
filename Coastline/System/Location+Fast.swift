@@ -9,16 +9,19 @@
 import Foundation
 import CoreLocation
 
+//TODO: 未能获得地理位置信息
 public extension CLLocation {
+	//获取当前的地理位置
 	func getPlace(_ response:@escaping (CLPlacemark?)->()) {
 		let coder = CLGeocoder()
-		coder.reverseGeocodeLocation(self, completionHandler: { (places:[CLPlacemark]?, err:NSError?) in
+		coder.reverseGeocodeLocation(self, completionHandler: { (places:[CLPlacemark]?, err:Error?) in
 			response(places?.first)
-			} as! CLGeocodeCompletionHandler)
+			})
 	}
 }
 
 public extension CLPlacemark {
+	//将地理位置转换为字符串
 	func placeString() -> String {
 		var result:String = ""
 		if let country = self.country {

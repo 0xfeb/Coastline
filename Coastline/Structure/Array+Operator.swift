@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Array {
+public extension Array {
 	
 	// 获取数组中的任一元素
 	var any:Element? {
@@ -55,9 +55,12 @@ extension Array {
 	
 	// 根据查询条件, 获取数组中的Index值(反向查询)
 	func oneIndexRev(_ finder:(Element)->Bool) -> Index? {
+		let count = self.count
+		if count == 0 { return nil }
+		
 		for i in indices.reversed() {
 			let n = self[i]
-			if finder(n) { return i }
+			if finder(n) { return count - i - 1 }
 		}
 		return nil
 	}
@@ -67,45 +70,6 @@ extension Array {
 		let swap = self[one]
 		self[one] = self[another]
 		self[another] = swap
-	}
-	
-	// 搜索并且删除元素
-	mutating func removeItem<T: Equatable>(_ item:T) {
-		for i in self.indices {
-			if self[i] as? T == item {
-				self.remove(at: i)
-			}
-		}
-	}
-	
-	// 搜索并且删除元素(只删除第一个搜索到的)
-	mutating func removeOneItem<T: Equatable>(_ item:T) {
-		for i in self.indices {
-			if self[i] as? T == item {
-				self.remove(at: i)
-				return
-			}
-		}
-	}
-	
-	// 搜索并且删除元素(只删除最后一个搜索到的)
-	mutating func removeOneItemRev<T: Equatable>(_ item:T) {
-		for i in self.indices.reversed() {
-			if self[i] as? T == item {
-				self.remove(at: i)
-				return
-			}
-		}
-	}
-	
-	// 获取一个元素的Index
-	func indexOf<T: Equatable>(_ item:T) -> Index? {
-		return oneIndex{
-			if let e = $0 as? T {
-				return e == item
-			}
-			return false
-		}
 	}
 	
 	
@@ -162,4 +126,44 @@ extension Array {
 			}
 		}
 	}
+}
+
+extension Array where Element:Equatable {
+	
+	// 搜索并且删除元素
+	mutating func removeItem(_ item:Element) {
+		for i in self.indices {
+			if self[i] == item {
+				self.remove(at: i)
+			}
+		}
+	}
+	
+	// 搜索并且删除元素(只删除第一个搜索到的)
+	mutating func removeOneItem(_ item:Element) {
+		for i in self.indices {
+			if self[i] == item {
+				self.remove(at: i)
+				return
+			}
+		}
+	}
+	
+	// 搜索并且删除元素(只删除最后一个搜索到的)
+	mutating func removeOneItemRev(_ item:Element) {
+		for i in self.indices.reversed() {
+			if self[i] == item {
+				self.remove(at: i)
+				return
+			}
+		}
+	}
+	
+	// 获取一个元素的Index
+	func indexOf(_ item:Element) -> Index? {
+		return oneIndex{
+			return item == $0
+		}
+	}
+
 }

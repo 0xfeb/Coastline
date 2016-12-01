@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
 	// 获取MD5加密, 使用soffes/Crypto替代原来的md5
 	
 	// 获取Base64加密

@@ -16,7 +16,7 @@ struct JsonResponse {
 	static public var ERROR_KEY = "error"
 }
 
-extension Dictionary {
+public extension Dictionary {
 	// 将一个Dictionary转换成新的Dictionary
 	func mapDict<K, V>(_ event:(Key, Value)->(K, V)) -> [K:V] {
 		var result:[K:V] = [:]
@@ -26,23 +26,17 @@ extension Dictionary {
 		}
 		return result
 	}
-	
-	// 针对JSON的分析处理工具, 返回指定类型
+}
+
+public extension Dictionary where Key:Equatable {
 	func val<T>(_ key:String) -> T? {
-		let k = key as! Key
-		return self[k] as? T
-	}
-	
-	// 针对JSON的分析处理工具, 返回指定类型, 如果值为空则返回指定缺省内容
-	func val<T>(_ key:String, def:T) -> T {
-		if let n:T = val(key) { return n }
-		return def
+		return self[key as! Key] as? T
 	}
 	
 	// 针对JSON分析的返回值处理工具
 	var parse:(code:Int, error:String?, data:AnyObject?) {
 		get {
-			let code:Int = val(JsonResponse.CODE_KEY, def:0)
+			let code:Int = val(JsonResponse.CODE_KEY) ?? 0
 			let error:String? = val(JsonResponse.ERROR_KEY)
 			let data:AnyObject? = val(JsonResponse.DATA_KEY)
 			return (code, error, data)

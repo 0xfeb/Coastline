@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CLPauseTimer : NSObject {
+//可以被暂停的Timer, 必须由回调的end发起新的Timer, 否则Timer不再继续
+public class CLPauseTimer : NSObject {
 	var timeInterval:TimeInterval = 0.0
 	var timer:Timer?
 	var event:(_ end:@escaping ()->Void)->Void = { _ in }
 	
-	init(_ timeInterval:TimeInterval, event:@escaping (_ end:@escaping ()->Void)->Void) {
+	public init(_ timeInterval:TimeInterval, event:@escaping (_ end:@escaping ()->Void)->Void) {
 		super.init()
 		self.timeInterval = timeInterval
 		self.event = event

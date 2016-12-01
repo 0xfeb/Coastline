@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
 	// 添加Path项目
 	func appendPath(_ path:String) -> String {
 		return (self as NSString).appendingPathComponent(path)
@@ -41,7 +41,7 @@ extension String {
 	}
 	
 	// 将文件名更换一个后缀名
-	func withNewExt(_ ext:String) -> String {
+	func newExt(_ ext:String) -> String {
 		if ext.hasSuffix(".") { return withOutExt + ext }
 		return withOutExt + "."+ext
 	}

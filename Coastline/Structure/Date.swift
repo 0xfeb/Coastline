@@ -15,9 +15,9 @@ public extension Date {
 		case dateTime
 	}
 	
-	static func parser(dateString:String) -> Date? {
+	public init?(string:String) {
 		let format = DateFormatter()
-		let length = dateString.characters.count
+		let length = string.characters.count
 		switch length {
 		case 8:
 			format.dateFormat = "HH:mm:ss"
@@ -27,52 +27,77 @@ public extension Date {
 			format.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		}
 		format.timeZone = TimeZone.autoupdatingCurrent
-		return format.date(from: dateString)
+		if let dt = format.date(from: string) {
+			self = dt
+		} else {
+			return nil
+		}
 	}
 	
-	func year() -> Int {
-		let format = DateFormatter()
-		format.dateFormat = "yyyy"
-		format.timeZone = TimeZone.autoupdatingCurrent
-		let year = format.string(from: self)
-		return Int(year)!
+	var year: Int {
+		return Calendar.current.component(.year, from: self)
 	}
 	
-	func formatDate() -> String {
+	var month: Int {
+		return Calendar.current.component(.month, from: self)
+	}
+	
+	var day: Int {
+		return Calendar.current.component(.day, from: self)
+	}
+	
+	var hour: Int {
+		return Calendar.current.component(.hour, from: self)
+	}
+	
+	var minute: Int {
+		return Calendar.current.component(.minute, from: self)
+	}
+	
+	var second: Int {
+		return Calendar.current.component(.second, from: self)
+	}
+	
+	var weekday: Int {
+		return Calendar.current.component(.weekday, from: self)
+	}
+
+	
+	var dateString: String {
 		let format = DateFormatter()
 		format.dateFormat = "yyyy-MM-dd"
 		format.timeZone = TimeZone.autoupdatingCurrent
 		return format.string(from: self)
 	}
 	
-	func formatTime() -> String {
+	var timeString: String {
 		let format = DateFormatter()
 		format.dateFormat = "hh:mm:ss"
 		format.timeZone = TimeZone.autoupdatingCurrent
 		return format.string(from: self)
 	}
 	
-	func formatDateTime() -> String {
+	var dateTimeString: String {
 		let format = DateFormatter()
 		format.dateFormat = "yyyy-MM-dd hh:mm:ss"
 		format.timeZone = TimeZone.autoupdatingCurrent
 		return format.string(from: self)
 	}
 	
-	func toString(_ dateType:DateType = .dateTime) -> String {
+	func string(_ dateType:DateType = .dateTime) -> String {
 		switch dateType {
 		case .date:
-			return formatDate()
+			return dateString
 		case .time:
-			return formatTime()
+			return timeString
 		case .dateTime:
-			return formatDateTime()
+			return dateTimeString
 		}
 	}
 	
-	func age() -> Int {
-		let curYear = Date().year()
-		let year = self.year()
+	var age : Int {
+		let curYear = Date().year
+		let year = self.year
 		return curYear - year + 1
 	}
 }
