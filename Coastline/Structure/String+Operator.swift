@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension String {
+public extension String {
 	// 获取子字符串
-	subscript(range:Range<Int>) -> String {
+	public subscript(range:Range<Int>) -> String {
 		let start = self.characters.index(self.startIndex, offsetBy: range.lowerBound)
 		let end = self.characters.index(self.startIndex, offsetBy: range.upperBound)
 		let indexRange:Range<String.Index> = start..<end
@@ -18,22 +18,22 @@ extension String {
 	}
 	
 	// 获取某个字符
-	subscript(index:Int) -> String {
+	public subscript(index:Int) -> String {
 		return self[index..<(index+1)]
 	}
 	
 	// 清除周边多余字符
-	func trim() -> String {
+	public func trim() -> String {
 		return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 	}
 	
 	// 子字符串(From)
-	func subStringFrom(_ index:Int) -> String {
+	public func subStringFrom(_ index:Int) -> String {
 		return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
 	}
 	
 	// 子字符串(To)
-	func subStringTo(_ index:Int) -> String {
+	public func subStringTo(_ index:Int) -> String {
 		return self.substring(to: self.characters.index(self.startIndex, offsetBy: index))
 	}
 }

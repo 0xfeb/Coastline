@@ -39,7 +39,8 @@ public extension UIAlertController {
 		return self
 	}
 	
-	func show(_ viewController:UIViewController) {
+	func show(_ viewController:UIViewController?) {
+		guard let viewController = viewController else { return }
 		OperationQueue.main.addOperation {
 			if let nv = viewController.navigationController {
 				nv.present(self, animated: true, completion: nil)

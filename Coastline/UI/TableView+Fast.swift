@@ -9,11 +9,11 @@
 import UIKit
 
 public extension UITableView {
-	var autoHeight:CGFloat {
+	public var autoHeight:CGFloat {
 		get { return estimatedRowHeight }
 		set {
-			estimatedRowHeight = newValue
 			rowHeight = UITableViewAutomaticDimension
+			estimatedRowHeight = newValue
 		}
 	}
 }

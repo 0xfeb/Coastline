@@ -10,14 +10,14 @@ import UIKit
 
 // 文本属性
 public class CLAttributes {
-	enum LineWidth:Int {
+	public enum LineWidth:Int {
 		case none = 0x00
 		case single = 0x01
 		case thick = 0x02
 		case double = 0x09
 	}
 	
-	enum LineStyle:Int {
+	public enum LineStyle:Int {
 		case solid = 0x000
 		case dot = 0x0100
 		case dash = 0x0200
@@ -25,38 +25,41 @@ public class CLAttributes {
 		case dashDotDot = 0x0400
 	}
 	
-	var font:UIFont?
-	var textColor:UIColor?
-	var backColor:UIColor?
-	var ligature:Bool?  //连体符
-	var kern:CGFloat?   //字间距
-	var strikethrough:(LineWidth, LineStyle, UIColor)?  //删除线
-	var underline:(LineWidth, LineStyle, UIColor)?      //下划线
-	var textStroke:(CGFloat, UIColor)?      //文字描边
-	var shadow:NSShadow?
-	var attachment:NSTextAttachment?        //附件
-	var baseline:CGFloat?                   //基线
-	var expansion:CGFloat?                  //横向拉伸
-	var link:URL?         //外链
-	var obliqueness:CGFloat?    //倾斜度,+右,-左
-	var vertical:Bool?      //竖排文本
+	public var font:UIFont?
+	public var textColor:UIColor?
+	public var backColor:UIColor?
+	public var ligature:Bool?  //连体符
+	public var kern:CGFloat?   //字间距
+	public var strikethrough:(LineWidth, LineStyle, UIColor)?  //删除线
+	public var underline:(LineWidth, LineStyle, UIColor)?      //下划线
+	public var textStroke:(CGFloat, UIColor)?      //文字描边
+	public var shadow:NSShadow?
+	public var attachment:NSTextAttachment?        //附件
+	public var baseline:CGFloat?                   //基线
+	public var expansion:CGFloat?                  //横向拉伸
+	public var link:URL?         //外链
+	public var obliqueness:CGFloat?    //倾斜度,+右,-左
+	public var vertical:Bool?      //竖排文本
 	
-	var alignment:NSTextAlignment?
-	var firstLineHeadIndent:CGFloat?
-	var headIndent:CGFloat?
-	var tailIndent:CGFloat?
-	var lineBreakMode:NSLineBreakMode?
-	var maximumLineHeight:CGFloat?
-	var minimumLineHeight:CGFloat?
-	var lineSpacing:CGFloat?
-	var paragraphSpacing:CGFloat?
-	var paragraphSpacingBefore:CGFloat?
-	var baseWritingDirection:NSWritingDirection?
-	var lineHeightMultiple:CGFloat?
-	var defaultTabInterval:CGFloat?
+	public var alignment:NSTextAlignment?
+	public var firstLineHeadIndent:CGFloat?
+	public var headIndent:CGFloat?
+	public var tailIndent:CGFloat?
+	public var lineBreakMode:NSLineBreakMode?
+	public var maximumLineHeight:CGFloat?
+	public var minimumLineHeight:CGFloat?
+	public var lineSpacing:CGFloat?
+	public var paragraphSpacing:CGFloat?
+	public var paragraphSpacingBefore:CGFloat?
+	public var baseWritingDirection:NSWritingDirection?
+	public var lineHeightMultiple:CGFloat?
+	public var defaultTabInterval:CGFloat?
+	
+	public init() {
+	}
 	
 	// 将文本属性生成系统所属的字典
-	var dict:[String:AnyObject] {
+	public var dict:[String:AnyObject] {
 		get{
 			var result:[String:AnyObject] = [:]
 			if let font = self.font { result[NSFontAttributeName] = font }
