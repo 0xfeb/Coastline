@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */; };
 		6C59CBEF1E0142B600A70A64 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C59CBEE1E0142B600A70A64 /* String+URL.swift */; };
 		6C8BC0FD1E025EC90083042F /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC0FC1E025EC90083042F /* Rate.swift */; };
 		6C8BC1031E028B010083042F /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC1021E028B010083042F /* UIGestureRecognizer.swift */; };
 		6CB0994D1E03DB4800576A12 /* String+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0994C1E03DB4800576A12 /* String+Json.swift */; };
+		6CD652D21E0BDFEF003C026B /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD652D11E0BDFEF003C026B /* Counter.swift */; };
 		6CE8EA3B1DBB5D4000C952E2 /* Coastline.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CE8EA391DBB5D4000C952E2 /* Coastline.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6CE8EA481DBB5E4400C952E2 /* AlertController+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE8EA471DBB5E4400C952E2 /* AlertController+Fast.swift */; };
 		6CE8EA4A1DBB5E5A00C952E2 /* Array+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE8EA491DBB5E5A00C952E2 /* Array+Operator.swift */; };
@@ -92,12 +94,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Animate.swift"; sourceTree = "<group>"; };
 		6C59CBEE1E0142B600A70A64 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		6C8BC0FC1E025EC90083042F /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		6C8BC1021E028B010083042F /* UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer.swift; sourceTree = "<group>"; };
 		6CB0994C1E03DB4800576A12 /* String+Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Json.swift"; sourceTree = "<group>"; };
 		6CB358AC1E08C7DF0088944F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6CB358AD1E08C7DF0088944F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6CD652D11E0BDFEF003C026B /* Counter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		6CE8EA361DBB5D4000C952E2 /* Coastline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Coastline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE8EA391DBB5D4000C952E2 /* Coastline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coastline.h; sourceTree = "<group>"; };
 		6CE8EA3A1DBB5D4000C952E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 				6CE8EAA71DBB5F6A00C952E2 /* View+Design.swift */,
 				6CE8EAA81DBB5F6A00C952E2 /* View+Fast.swift */,
 				6CE8EAA91DBB5F6A00C952E2 /* View+Frame.swift */,
+				6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */,
 				6C8BC1021E028B010083042F /* UIGestureRecognizer.swift */,
 			);
 			path = UI;
@@ -285,6 +290,7 @@
 				6CE8EA9A1DBB5F5100C952E2 /* String+Path.swift */,
 				6C59CBEE1E0142B600A70A64 /* String+URL.swift */,
 				6C8BC0FC1E025EC90083042F /* Rate.swift */,
+				6CD652D11E0BDFEF003C026B /* Counter.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -526,11 +532,13 @@
 				6CE8EA721DBB5ED400C952E2 /* Int+Convert.swift in Sources */,
 				6CE8EA4A1DBB5E5A00C952E2 /* Array+Operator.swift in Sources */,
 				6CE8EAA21DBB5F5900C952E2 /* TableView+Fast.swift in Sources */,
+				6CD652D21E0BDFEF003C026B /* Counter.swift in Sources */,
 				6CE8EA6C1DBB5EC800C952E2 /* Dictionary+Operator.swift in Sources */,
 				6CE8EAAA1DBB5F6A00C952E2 /* View+Design.swift in Sources */,
 				6CE8EAA51DBB5F6100C952E2 /* UIApplication+Config.swift in Sources */,
 				6CE8EA9E1DBB5F5100C952E2 /* String+FileName.swift in Sources */,
 				6CE8EA7C1DBB5EF100C952E2 /* NavigationController+Fast.swift in Sources */,
+				6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */,
 				6CE8EAA01DBB5F5100C952E2 /* String+Path.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
