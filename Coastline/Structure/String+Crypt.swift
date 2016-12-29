@@ -36,7 +36,7 @@ public extension String {
 		get {
 			let puuid = CFUUIDCreate(nil)
 			let suuid = CFUUIDCreateString(nil, puuid)
-			return "\(suuid)"
+			return "\(suuid!)"
 		}
 	}
 }

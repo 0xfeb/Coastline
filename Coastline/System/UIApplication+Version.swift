@@ -10,6 +10,7 @@ import UIKit
 
 public extension UIApplication {
 	private static let LAST_VERSION_KEY = "lastVersion"
+	private static let LAST_BUILD_KEY = "lastBuild"
 	
 	// 将当前版本设为最新版本
 	public func saveCurrentAsNewVersion() {
@@ -29,5 +30,22 @@ public extension UIApplication {
 			return version != self.appVersion
 		}
 		return true
+	}
+	
+	public var isNewBuild:Bool {
+		let ud = UserDefaults.standard
+		if let version = ud.value(forKey: UIApplication.LAST_BUILD_KEY) as? String {
+			return version != self.appVersion! + "_" + self.buildVerison!
+		}
+		return true
+	}
+	
+	public func saveCurrentAsNewBuild() {
+		let version = self.appVersion! + "_" + self.buildVerison!
+		OperationQueue().addOperation({
+			let ud = UserDefaults.standard
+			ud.setValue(version, forKey: UIApplication.LAST_BUILD_KEY)
+			ud.synchronize()
+		})
 	}
 }
