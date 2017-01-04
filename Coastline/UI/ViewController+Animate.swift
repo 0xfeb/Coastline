@@ -16,9 +16,9 @@ public extension UIViewController {
 		self.view.addSubview(vc.view)
 
 		UIView.animate(withDuration: time, animations: {
-			vc.view.backgroundColor = UIColor(red: 0.247, green: 0.247, blue: 0.247, alpha: 0.5)
 			vc.view.transform = CGAffineTransform.identity
 		}) { (_) in
+			vc.view.backgroundColor = UIColor(red: 0.247, green: 0.247, blue: 0.247, alpha: 0.5)
 			complete()
 		}
 	}

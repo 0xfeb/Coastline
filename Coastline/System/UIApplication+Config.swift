@@ -14,37 +14,81 @@ public extension UIApplication {
 	private static let BUILD_VERSION_KEY = "CFBundleVersion"
 	
 	// 获取应用的Scheme名称
-	var scheme:String? {
+	public var scheme:String? {
 		get { return Bundle.main.bundleIdentifier }
 	}
 	
 	// 获取plist中的配置信息
-	func config(_ key:String) -> AnyObject? {
+	public func config(_ key:String) -> AnyObject? {
 		return Bundle.main.object(forInfoDictionaryKey: key) as AnyObject?
 	}
 	
 	// 获取plist中的配置信息(字符串)
-	func configString(_ key:String) -> String? {
+	public func configString(_ key:String) -> String? {
 		return config(key) as? String
 	}
 	
 	// 获取应用版本
-	var appVersion:String? {
+	public var appVersion:String? {
 		get { return configString(UIApplication.APP_VERSION_KEY) }
 	}
 	
 	// 获取应用编译版本
-	var buildVerison:String? {
+	public var buildVerison:String? {
 		get { return configString(UIApplication.BUILD_VERSION_KEY) }
 	}
 	
 	// 获取操作系统版本
-	var systemVersion:String {
+	public var systemVersion:String {
 		get { return UIDevice.current.systemVersion }
 	}
 	
 	// 获取基础URL字符串
-	var baseURL:String? {
+	public var baseURL:String? {
 		get { return configString(UIApplication.BASE_URL_KEY) }
+	}
+	
+	// 获取url列表
+	public var urlList:[String:[String]] {
+		guard let list = config("CFBundleURLTypes") as? [[AnyHashable:Any]] else { return [:] }
+		
+		var result:[String:[String]] = [:]
+		list.forEach {
+			let key = $0["CFBundleURLName"] as! String
+			let value = $0["CFBundleURLSchemes"] as! [String]
+			result[key] = value
+		}
+		
+		return result
+	}
+	
+	public var urlSimpleList:[String:String] {
+		guard let list = config("CFBundleURLTypes") as? [[AnyHashable:Any]] else { return [:] }
+		
+		var result:[String:String] = [:]
+		list.forEach {
+			let key = $0["CFBundleURLName"] as! String
+			let schemes = $0["CFBundleURLSchemes"] as! [String]
+			if let value = schemes.first {
+				result[key] = value
+			}
+		}
+		
+		return result
+	}
+	
+	public func urlScheme(url:URL) -> String? {
+		guard let list = config("CFBundleURLTypes") as? [[AnyHashable:Any]] else { return nil }
+		let urlString = url.absoluteString
+		
+		for n in list {
+			if let value = n["CFBundleURLSchemes"] as? [String] {
+				if value.one({ urlString.hasPrefix($0) }) != nil {
+					return n["CFBundleURLName"] as? String
+				}
+			}
+		}
+		
+		return nil
 	}
 }
