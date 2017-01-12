@@ -8,14 +8,17 @@
 
 import UIKit
 
-extension NSAttributedString {
-	// 从html生成字符串
-	convenience init?(html:String) {
-		let options:[String:AnyObject] = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType as AnyObject,
-		                                  NSCharacterEncodingDocumentAttribute : NSNumber(value: Int(String.Encoding.utf8.rawValue))]
-		if let data = (html as NSString).data(using: String.Encoding.utf8.rawValue, allowLossyConversion: true) {
-			do { try self.init(data: data, options: options, documentAttributes: nil)}
-			catch { return nil }
+public extension NSAttributedString {
+	public  static func fromHtml(_ html:String) -> NSAttributedString? {
+		let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType,
+		               NSCharacterEncodingDocumentAttribute:  String.Encoding.utf8.rawValue] as [String : Any]
+		if let data = html.data(using: .utf8, allowLossyConversion: true) {
+			do {
+				return try NSAttributedString(data: data, options: options, documentAttributes: nil)
+			} catch {
+				print(error)
+				return nil
+			}
 		}
 		return nil
 	}
