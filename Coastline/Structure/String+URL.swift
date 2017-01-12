@@ -10,7 +10,8 @@ import Foundation
 
 public extension String {
 	public var url:URL? {
-		if let str = self.urlString {
+		guard let parts = self.urlParts else { return nil }
+		if let str = String.combineUrl(parts: parts) {
 			return URL(string: str)
 		}
 		return nil
@@ -61,7 +62,7 @@ public extension String {
 			if k == "body" { continue }
 			
 			if let key = k.urlString, let value = v.urlString {
-				result += "\(key)=\(value)"
+				result += "\(key)=\(value)&"
 			}
 		}
 		return result
