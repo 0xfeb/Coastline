@@ -10,9 +10,9 @@ import StoreKit
 
 @objc public class CLPay : NSObject {
 	var payResult:(Bool)->Void = { _ in }
-	let sharedInstance = CLPay()
+	static var shareInstance:CLPay = { CLPay() }()
 	
-	override init() {
+	public override init() {
 		super.init()
 		
 		SKPaymentQueue.default().add(self)
@@ -22,7 +22,7 @@ import StoreKit
 		SKPaymentQueue.default().remove(self)
 	}
 	
-	func fetchProduct(aid:String) {
+	public func fetchProduct(aid:String) {
 		let request = SKProductsRequest(productIdentifiers: Set(arrayLiteral: aid))
 		request.delegate = self
 		request.start()

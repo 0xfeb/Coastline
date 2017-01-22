@@ -126,9 +126,20 @@ public extension Array {
 			}
 		}
 	}
+	
+	func toDict<Key, Value>(_ combiner:(Element)->(Key, Value)) -> [Key:Value] {
+		var result:[Key:Value] = [:]
+		
+		for n in self {
+			let kv = combiner(n)
+			result[kv.0] = kv.1
+		}
+		
+		return result
+	}
 }
 
-extension Array where Element:Equatable {
+public extension Array where Element:Equatable {
 	
 	// 搜索并且删除元素
 	mutating func removeItem(_ item:Element) {
@@ -167,3 +178,4 @@ extension Array where Element:Equatable {
 	}
 
 }
+
