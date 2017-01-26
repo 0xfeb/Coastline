@@ -80,4 +80,24 @@ public extension UIView {
 			self.frame = f
 		}
 	}
+	
+	var frameCetner:CGPoint {
+		get { return CGPoint(x: frameCenterH, y: frameCenterV) }
+		set {
+			self.frameCenterH = newValue.x
+			self.frameCenterV = newValue.y
+		}
+	}
+	
+	var boundsCenterH:CGFloat {
+		return bounds.origin.x + bounds.size.width / 2.0
+	}
+	
+	var boundsCenterV:CGFloat {
+		return bounds.origin.y + bounds.size.height / 2.0
+	}
+	
+	var boundsCenter:CGPoint {
+		return CGPoint(x: boundsCenterH, y: boundsCenterV)
+	}
 }
