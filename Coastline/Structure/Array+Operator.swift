@@ -177,5 +177,24 @@ public extension Array where Element:Equatable {
 		}
 	}
 
+	
+	
+	func include(element:Element) -> Bool {
+		return isAny{ $0 == element }
+	}
+	
+	func includeAny(array:[Element]) -> Bool {
+		return isAny{
+			let n = $0
+			return array.isAny{ [n] in $0 == n }
+		}
+	}
+	
+	func includeAll(array:[Element]) -> Bool {
+		return array.isAll{
+			let n = $0
+			return self.isAny{ [n] in $0 == n }
+		}
+	}
 }
 
