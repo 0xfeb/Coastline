@@ -15,11 +15,11 @@ public extension String {
 	}
 	
 	// 获取字符串的尺寸(多行)
-	public func textRectInSize(_ size:CGSize, font:UIFont, wordwarp:NSLineBreakMode) -> CGRect {
+	public func textRectInSize(_ size:CGSize, font:UIFont, wordwarp:NSLineBreakMode, kern:CGFloat = 0) -> CGRect {
 		let maxSize = CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude)
 		let pStyle = NSMutableParagraphStyle()
 		pStyle.lineBreakMode = wordwarp
-		let rect = (self as NSString).boundingRect(with: maxSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName:font, NSParagraphStyleAttributeName:pStyle], context: nil)
+		let rect = (self as NSString).boundingRect(with: maxSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName:font, NSParagraphStyleAttributeName:pStyle, NSKernAttributeName:NSNumber(value: Float(kern))], context: nil)
 		return CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: rect.height+1)
 	}
 	
