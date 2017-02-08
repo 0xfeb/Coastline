@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */; };
 		6C5425C81E4AF15000F8ECB4 /* Rect+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */; };
+		6C5425CA1E4AF2C300F8ECB4 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C91E4AF2C300F8ECB4 /* Range.swift */; };
 		6C59CBEF1E0142B600A70A64 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C59CBEE1E0142B600A70A64 /* String+URL.swift */; };
 		6C78AC1B1E36EECD001B8B52 /* URL+Req.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */; };
 		6C8BC0FD1E025EC90083042F /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC0FC1E025EC90083042F /* Rate.swift */; };
@@ -103,6 +104,7 @@
 /* Begin PBXFileReference section */
 		6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Animate.swift"; sourceTree = "<group>"; };
 		6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rect+Operation.swift"; sourceTree = "<group>"; };
+		6C5425C91E4AF2C300F8ECB4 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		6C59CBEE1E0142B600A70A64 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Req.swift"; sourceTree = "<group>"; };
 		6C8BC0FC1E025EC90083042F /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				6CD652D11E0BDFEF003C026B /* Counter.swift */,
 				6CB8DAE51E34C33500F18D26 /* URL+Part.swift */,
 				6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */,
+				6C5425C91E4AF2C300F8ECB4 /* Range.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				6CE8EA9B1DBB5F5100C952E2 /* String+Crypt.swift in Sources */,
 				6CE8EA9C1DBB5F5100C952E2 /* String+Draw.swift in Sources */,
 				6CE8EA801DBB5EFB00C952E2 /* OperationQueue+Proc.swift in Sources */,
+				6C5425CA1E4AF2C300F8ECB4 /* Range.swift in Sources */,
 				6CE8EA8C1DBB5F3900C952E2 /* Rect+Part.swift in Sources */,
 				6CE8EA6F1DBB5ECF00C952E2 /* Image+Color.swift in Sources */,
 				6CE8EA901DBB5F3D00C952E2 /* Regex.swift in Sources */,
