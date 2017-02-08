@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */; };
+		6C5425C81E4AF15000F8ECB4 /* Rect+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */; };
 		6C59CBEF1E0142B600A70A64 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C59CBEE1E0142B600A70A64 /* String+URL.swift */; };
 		6C78AC1B1E36EECD001B8B52 /* URL+Req.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */; };
 		6C8BC0FD1E025EC90083042F /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC0FC1E025EC90083042F /* Rate.swift */; };
@@ -101,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Animate.swift"; sourceTree = "<group>"; };
+		6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rect+Operation.swift"; sourceTree = "<group>"; };
 		6C59CBEE1E0142B600A70A64 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Req.swift"; sourceTree = "<group>"; };
 		6C8BC0FC1E025EC90083042F /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				6CE8EA891DBB5F3900C952E2 /* Rect+Part.swift */,
 				6CE8EA8A1DBB5F3900C952E2 /* Rect+Position.swift */,
 				6CE8EA8B1DBB5F3900C952E2 /* Rect+Size.swift */,
+				6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */,
 			);
 			path = Paint;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				6CE8EA541DBB5E7700C952E2 /* BarCodeScanner.swift in Sources */,
 				6CE8EA6A1DBB5EC800C952E2 /* Data+String.swift in Sources */,
 				6CC19ADF1E3860880020E3A3 /* WebView+Header.swift in Sources */,
+				6C5425C81E4AF15000F8ECB4 /* Rect+Operation.swift in Sources */,
 				6CE8EA861DBB5F2900C952E2 /* PageViewController.swift in Sources */,
 				6CE8EA601DBB5EB500C952E2 /* Color+Fast.swift in Sources */,
 				6C78AC1B1E36EECD001B8B52 /* URL+Req.swift in Sources */,
