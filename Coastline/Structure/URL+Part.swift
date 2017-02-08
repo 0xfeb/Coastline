@@ -9,8 +9,8 @@
 import Foundation
 
 public extension URL {
-	public var params:[String:String?]? {
-		guard let p = query else { return nil }
+	public var params:[String:String?] {
+		guard let p = query else { return [:] }
 		return p.components(separatedBy: "&").toDict{ $0.head2Parts(gap: "=") }
 	}
 	
@@ -19,27 +19,27 @@ public extension URL {
 		return p.components(separatedBy: "&")
 	}
 	
-	public func isScheme(scheme:String) -> URL? {
+	public func isScheme(_ scheme:String) -> URL? {
 		return self.scheme == scheme ? self : nil
 	}
 	
-	public func isHost(host:String) -> URL? {
+	public func isHost(_ host:String) -> URL? {
 		return self.host == host ? self : nil
 	}
 	
-	public func isPath(path:String) -> URL? {
+	public func isPath(_ path:String) -> URL? {
 		return self.path == path ? self : nil
 	}
 	
-	public func isPrePath(text:String) -> URL? {
+	public func isPrePath(_ text:String) -> URL? {
 		return self.path.hasPrefix(text) ? self: nil
 	}
 	
-	public func isPostPath(text:String) -> URL? {
+	public func isPostPath(_ text:String) -> URL? {
 		return self.path.hasSuffix(text) ? self: nil
 	}
 	
-	public func isParams(lines:[String]) -> URL? {
+	public func isParams(_ lines:[String]) -> URL? {
 		return  self.paramStrings?.includeAll(array: lines) == true ? self: nil
 	}
 }
