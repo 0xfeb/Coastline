@@ -8,46 +8,41 @@
 
 import StoreKit
 
-@objc public class CLPay : NSObject {
-	var payResult:(Bool)->Void = { _ in }
-	static var shareInstance:CLPay = { CLPay() }()
-	
-	public override init() {
-		super.init()
+public class CLPay {
+	public static func addPay(aid:String, delegate:SKProductsRequestDelegate, observer:SKPaymentTransactionObserver) -> SKProductsRequest {
+		SKPaymentQueue.default().add(observer)
 		
-		SKPaymentQueue.default().add(self)
-	}
-	
-	deinit {
-		SKPaymentQueue.default().remove(self)
-	}
-	
-	public func fetchProduct(aid:String) {
-		let request = SKProductsRequest(productIdentifiers: Set(arrayLiteral: aid))
-		request.delegate = self
+		let request = SKProductsRequest(productIdentifiers: NSSet(array:[aid]) as! Set<String>)
+		request.delegate = delegate
 		request.start()
+		
+		return request
+	}
+	
+	public static func removePay(observer:SKPaymentTransactionObserver) {
+		SKPaymentQueue.default().remove(observer)
 	}
 }
 
-extension CLPay : SKProductsRequestDelegate {
-	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+extension UIViewController {
+	public func payGetProduct(_ request: SKProductsRequest, didReceive response: SKProductsResponse) -> Bool {
 		if let product = response.products.first {
 			let payment = SKPayment(product: product)
 			SKPaymentQueue.default().add(payment)
-		} else {
-			print("找不到对应的商品信息")
+			return true
 		}
+		return false
 	}
-}
-
-extension CLPay : SKPaymentTransactionObserver {
-	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+	
+	public func payDoAction(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) -> Bool {
 		if let trans = transactions.first {
 			if trans.transactionState == .purchased {
-				payResult(true)
+				return true
 			} else if trans.transactionState == .failed {
-				payResult(false)
+				return false
 			}
 		}
+		
+		return false
 	}
 }
