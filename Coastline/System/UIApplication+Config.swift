@@ -12,10 +12,15 @@ public extension UIApplication {
 	private static let BASE_URL_KEY = "baseURL"
 	private static let APP_VERSION_KEY = "CFBundleShortVersionString"
 	private static let BUILD_VERSION_KEY = "CFBundleVersion"
+	private static let APP_NAME_KEY = "CFBundleDisplayName"
 	
 	// 获取应用的Scheme名称
 	public var scheme:String? {
 		get { return Bundle.main.bundleIdentifier }
+	}
+	
+	public var appName:String? {
+		get { return configString(UIApplication.APP_NAME_KEY) }
 	}
 	
 	// 获取plist中的配置信息
