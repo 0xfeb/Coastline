@@ -10,7 +10,7 @@ import UIKit
 
 open class CLPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 	var pages:[UIViewController] = []
-	var cycleMode:Bool = false
+	open var cycleMode:Bool = false
 	open var onSelectPage:(Int) -> () = { _ in }
 	
 	open func setPages(pages:[UIViewController]) {
@@ -21,6 +21,8 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 	}
 	
 	open func gotoPage(index:Int, direction:UIPageViewControllerNavigationDirection = .forward) {
+		if pages.count < 2 { return }
+		
 		if index < pages.count {
 			let page = pages[index]
 			self.setViewControllers([page], direction: direction, animated: true, completion: nil)
@@ -28,6 +30,8 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 	}
 	
 	open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+		if pages.count < 2 { return nil }
+		
 		if let index = pages.index(of: viewController) {
 			if index == pages.count - 1 {
 				return self.cycleMode ? pages.first : nil
@@ -38,6 +42,8 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 	}
 	
 	open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+		if pages.count < 2 { return nil }
+		
 		if let index = pages.index(of: viewController) {
 			if index == 0 {
 				return self.cycleMode ? pages.last : nil
