@@ -8,41 +8,64 @@
 
 import StoreKit
 
-public class CLPay {
-	public static func addPay(aid:String, delegate:SKProductsRequestDelegate, observer:SKPaymentTransactionObserver) -> SKProductsRequest {
-		SKPaymentQueue.default().add(observer)
-		
-		let request = SKProductsRequest(productIdentifiers: NSSet(array:[aid]) as! Set<String>)
-		request.delegate = delegate
-		request.start()
-		
-		return request
+@objc public class CLPay : NSObject {
+	var buyNumber = 1
+	var request:SKProductsRequest?
+	var buyAction:(String, SKPaymentTransaction)->Void = { _ in }
+	
+	public func register() {
+		SKPaymentQueue.default().add(self)
 	}
 	
-	public static func removePay(observer:SKPaymentTransactionObserver) {
-		SKPaymentQueue.default().remove(observer)
+	deinit{
+		SKPaymentQueue.default().remove(self)
+	}
+	
+	public func addPayment(product:SKProduct) {
+		let payment = SKMutablePayment(product: product)
+		payment.quantity = buyNumber
+		SKPaymentQueue.default().add(payment)
+	}
+	
+	public func getProduct(pid:String, number:Int = 1) {
+		buyNumber = number
+		getProducts(pids: [pid])
+	}
+	
+	public func getProducts(pids:Set<String>) {
+		request = SKProductsRequest(productIdentifiers: pids)
+		request?.delegate = self
+		request?.start()
 	}
 }
 
-extension UIViewController {
-	public func payGetProduct(_ request: SKProductsRequest, didReceive response: SKProductsResponse) -> Bool {
-		if let product = response.products.first {
-			let payment = SKPayment(product: product)
-			SKPaymentQueue.default().add(payment)
-			return true
-		}
-		return false
-	}
-	
-	public func payDoAction(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) -> Bool {
-		if let trans = transactions.first {
-			if trans.transactionState == .purchased {
-				return true
-			} else if trans.transactionState == .failed {
-				return false
+extension CLPay: SKPaymentTransactionObserver {
+	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+		for tran in transactions {
+			switch tran.transactionState {
+			case .purchasing :
+				print("show no deferred progress")
+			case .deferred:
+				print("show deferred progress")
+			case .failed:
+				print("transaction failed")
+			case .purchased:
+				print("purchased")
+			case .restored:
+				print("restored")
 			}
 		}
+	}
+}
+
+extension CLPay: SKProductsRequestDelegate {
+	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+		for errorId in response.invalidProductIdentifiers {
+			print("invalid Products :", errorId)
+		}
 		
-		return false
+		for product in response.products {
+			addPayment(product: product)
+		}
 	}
 }
