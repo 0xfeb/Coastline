@@ -33,6 +33,12 @@ public extension UIApplication {
 		return config(key) as? String
 	}
 	
+	// 获取语言
+	public func language() -> String? {
+		//return (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first
+		return NSLocale.current.languageCode
+	}
+	
 	// 获取应用版本
 	public var appVersion:String? {
 		get { return configString(UIApplication.APP_VERSION_KEY) }
