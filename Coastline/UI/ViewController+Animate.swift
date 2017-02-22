@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIViewController {
 	public func popOut(vc:UIViewController, time:TimeInterval, complete:@escaping ()->Void) {
-		vc.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+		vc.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
 		vc.view.backgroundColor = UIColor.clear
 		self.addChildViewController(vc)
 		self.view.addSubview(vc.view)
@@ -26,7 +26,7 @@ public extension UIViewController {
 	public func unPopOut(time:TimeInterval, complete:@escaping ()->Void) {
 		self.view.backgroundColor = UIColor.clear
 		UIView.animate(withDuration: time, animations: { [weak self] in
-			self?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+			self?.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
 		}) { (_) in
 			self.view.removeFromSuperview()
 			self.removeFromParentViewController()
