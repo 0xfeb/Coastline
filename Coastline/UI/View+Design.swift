@@ -16,7 +16,10 @@ public extension UIView {
 	
 	@IBInspectable var boarderColor:UIColor {
 		set { self.layer.borderColor = newValue.cgColor }
-		get { return UIColor(cgColor: self.layer.borderColor!) }
+		get {
+			guard let c = self.layer.borderColor else { return UIColor.black }
+			return UIColor(cgColor: c)
+		}
 	}
 	
 	@IBInspectable var clipMask:Bool {
@@ -46,7 +49,10 @@ public extension UIView {
 	
 	@IBInspectable var shadowColor:UIColor {
 		set { self.layer.shadowColor = newValue.cgColor }
-		get { return UIColor(cgColor: self.layer.shadowColor!) }
+		get {
+			guard let c = self.layer.shadowColor else { return UIColor.black }
+			return UIColor(cgColor: c)
+		}
 	}
 	
 }

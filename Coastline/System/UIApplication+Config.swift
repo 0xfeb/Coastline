@@ -65,8 +65,8 @@ public extension UIApplication {
 		
 		var result:[String:[String]] = [:]
 		list.forEach {
-			let key = $0["CFBundleURLName"] as! String
-			let value = $0["CFBundleURLSchemes"] as! [String]
+			guard let key = $0["CFBundleURLName"] as? String else { return }
+			guard let value = $0["CFBundleURLSchemes"] as? [String] else { return }
 			result[key] = value
 		}
 		
@@ -78,8 +78,8 @@ public extension UIApplication {
 		
 		var result:[String:String] = [:]
 		list.forEach {
-			let key = $0["CFBundleURLName"] as! String
-			let schemes = $0["CFBundleURLSchemes"] as! [String]
+			guard let key = $0["CFBundleURLName"] as? String else { return }
+			guard let schemes = $0["CFBundleURLSchemes"] as? [String] else { return }
 			if let value = schemes.first {
 				result[key] = value
 			}

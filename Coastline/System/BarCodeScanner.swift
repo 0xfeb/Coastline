@@ -23,7 +23,8 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 	public override init() {
 		session = AVCaptureSession()
 		device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-		input = try! AVCaptureDeviceInput(device: device)
+	 	guard let di = try? AVCaptureDeviceInput(device: device) else { return }
+		input = di
 		if ((session?.canAddInput(input)) != nil) {
 			session?.addInput(input)
 		}
@@ -36,10 +37,12 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 	}
 	
 	public func bindLayer(_ view:UIView) {
-		layer?.frame = view.bounds
-		layer?.masksToBounds = true
-		layer?.cornerRadius = 5.0
-		view.layer.addSublayer(layer!)
+		guard let layer = layer else { return }
+		
+		layer.frame = view.bounds
+		layer.masksToBounds = true
+		layer.cornerRadius = 5.0
+		view.layer.addSublayer(layer)
 	}
 	
 	public func getCode(_ response:@escaping (AVMetadataMachineReadableCodeObject) -> ()) {

@@ -35,13 +35,13 @@ public extension UIApplication {
 	public var isNewBuild:Bool {
 		let ud = UserDefaults.standard
 		if let version = ud.value(forKey: UIApplication.LAST_BUILD_KEY) as? String {
-			return version != self.appVersion! + "_" + self.buildVerison!
+			return version != (self.appVersion ?? "0") + "_" + (self.buildVerison ?? "0")
 		}
 		return true
 	}
 	
 	public func saveCurrentAsNewBuild() {
-		let version = self.appVersion! + "_" + self.buildVerison!
+		let version = (self.appVersion ?? "0") + "_" + self.buildVerison!
 		OperationQueue().addOperation({
 			let ud = UserDefaults.standard
 			ud.setValue(version, forKey: UIApplication.LAST_BUILD_KEY)

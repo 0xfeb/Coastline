@@ -21,17 +21,17 @@ public extension URL {
 		return URLRequest(url: self)
 	}
 	
-	public func request(_ method:RequestMethod, data:Data?) -> URLRequest {
+	public func request(_ method:RequestMethod, data:Data?) -> URLRequest? {
 		let req = NSMutableURLRequest(url: self)
 		req.httpBody = data
-		return req.copy() as! URLRequest
+		return req.copy() as? URLRequest
 	}
 	
-	public func request(_ method:RequestMethod, string:String?) -> URLRequest {
+	public func request(_ method:RequestMethod, string:String?) -> URLRequest? {
 		return request(method, data: string?.data(using: String.Encoding.utf8))
 	}
 	
-	public func request(_ method:RequestMethod, dict:[AnyHashable:Any]?) -> URLRequest {
+	public func request(_ method:RequestMethod, dict:[AnyHashable:Any]?) -> URLRequest? {
 		var data:Data?
 		if let dict = dict {
 			data = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())

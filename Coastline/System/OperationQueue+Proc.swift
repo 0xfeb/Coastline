@@ -9,7 +9,7 @@
 import Foundation
 
 public class CLProc<T> {
-	var queue:OperationQueue!
+	var queue:OperationQueue
 	var method:()->T? = { nil }
 	
 	init(queue:OperationQueue, method:@escaping ()->T?) {

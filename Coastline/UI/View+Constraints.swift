@@ -17,20 +17,23 @@ public class CLViewWithAttribute {
 		self.attribute = attribute
 	}
 	
-	func equal(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint  {
-		let c = NSLayoutConstraint(item: self.view!, attribute: self.attribute, relatedBy: NSLayoutRelation.equal, toItem: attr.view!, attribute: attr.attribute, multiplier: multiplier, constant: constant)
+	func equal(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint?  {
+		guard let view = view, let aview = attr.view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: NSLayoutRelation.equal, toItem: aview, attribute: attr.attribute, multiplier: multiplier, constant: constant)
 		c.isActive = true
 		return c
 	}
 	
-	func equalLess(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint  {
-		let c = NSLayoutConstraint(item: self.view!, attribute: self.attribute, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: attr.view!, attribute: attr.attribute, multiplier: multiplier, constant: constant)
+	func equalLess(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint?  {
+		guard let view = view, let aview = attr.view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: aview, attribute: attr.attribute, multiplier: multiplier, constant: constant)
 		c.isActive = true
 		return c
 	}
 	
-	func equalGreater(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint  {
-		let c = NSLayoutConstraint(item: self.view!, attribute: self.attribute, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: attr.view!, attribute: attr.attribute, multiplier: multiplier, constant: constant)
+	func equalGreater(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint?  {
+		guard let view = view, let aview = attr.view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: aview, attribute: attr.attribute, multiplier: multiplier, constant: constant)
 		c.isActive = true
 		return c
 	}

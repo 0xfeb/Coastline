@@ -54,8 +54,8 @@ public extension UIViewController {
 		guard let image = self.view.fastCapture  else { self.dismiss(animated: true){ complete() } ; return }
 		let iView = UIImageView(image: image)
 		iView.frame = self.view.bounds
-		let window = UIApplication.shared.delegate?.window
-		window!?.addSubview(iView)
+		guard let window = UIApplication.shared.delegate?.window else { return }
+		window?.addSubview(iView)
 		self.dismiss(animated: false) { 
 			UIView.animate(withDuration: time, animations: {
 				let screenRect = UIScreen.main.bounds
@@ -87,8 +87,8 @@ public extension UIViewController {
 		guard let image = self.view.fastCapture  else { self.dismiss(animated: true){ complete() } ; return }
 		let iView = UIImageView(image: image)
 		iView.frame = self.view.bounds
-		let window = UIApplication.shared.delegate?.window
-		window!?.addSubview(iView)
+		guard let window = UIApplication.shared.delegate?.window else { return }
+		window?.addSubview(iView)
 		self.dismiss(animated: false) {
 			UIView.animate(withDuration: time, animations: {
 				let screenRect = UIScreen.main.bounds

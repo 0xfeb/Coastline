@@ -10,33 +10,33 @@ import UIKit
 import CoreImage
 
 public extension UIImage {
-	func masked(withColor color:UIColor) -> UIImage {
+	func masked(withColor color:UIColor) -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(self.size, true, 0.0)
 		self.draw(at: CGPoint(x: 0.0, y: 0.0))
 		color.setFill()
 		UIRectFillUsingBlendMode(CGRect(origin: CGPoint.zero, size: self.size), CGBlendMode.sourceAtop)
-		let result:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+		let result = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		
 		return result
 	}
 	
-	static func colorImage(_ color:UIColor) -> UIImage {
+	static func colorImage(_ color:UIColor) -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: 1.0, height: 1.0), false, 0.0)
 		color.setFill()
 		UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
-		let result:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+		let result = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		
 		return result
 	}
 	
-	func blur(_ radius:CGFloat) -> UIImage {
-		let ci = self.ciImage
+	func blur(_ radius:CGFloat) -> UIImage? {
+		guard let ci = self.ciImage else { return nil }
 		let filter = CIFilter(name: "CIGaussianBlur")
-		filter?.setValue(ci!, forKey: kCIInputImageKey)
+		filter?.setValue(ci, forKey: kCIInputImageKey)
 		filter?.setValue(NSNumber(value: Double(radius) as Double), forKey: "inputRadius")
-		let co = filter?.value(forKey: kCIOutputImageKey) as? CoreImage.CIImage
-		return UIImage(ciImage: co!)
+		guard let co = filter?.value(forKey: kCIOutputImageKey) as? CoreImage.CIImage else { return nil }
+		return UIImage(ciImage: co)
 	}
 }

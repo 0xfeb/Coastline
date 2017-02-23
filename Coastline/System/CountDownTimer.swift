@@ -22,7 +22,7 @@ public class CLCountDownTimer {
 	
 	@objc func main() {
 		if currentCount > 0 { currentCount = currentCount - 1 }
-		else { timer!.invalidate() }
+		else { timer?.invalidate() }
 		cdEvent(currentCount)
 	}
 	

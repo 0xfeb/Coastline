@@ -68,7 +68,6 @@ public class MultiLanguage {
 
 public extension String {
 	var l:String {
-		//return MultiLanguage.shareInstance.str(key: self)!
 		return NSLocalizedString(self, comment: self)
 	}
 }

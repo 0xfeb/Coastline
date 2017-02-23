@@ -35,8 +35,11 @@ public extension String {
 	public static var UUID:String {
 		get {
 			let puuid = CFUUIDCreate(nil)
-			let suuid = CFUUIDCreateString(nil, puuid)
-			return "\(suuid!)"
+			if let suuid = CFUUIDCreateString(nil, puuid) {
+				return "\(suuid)"
+			} else {
+				return "\(UInt64.random())"+"\(UInt64.random())"+"\(UInt64.random())"
+			}
 		}
 	}
 }

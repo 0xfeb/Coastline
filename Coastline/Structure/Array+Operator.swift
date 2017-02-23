@@ -118,7 +118,7 @@ public extension Array {
 	func combine(_ sep:String) -> String {
 		let count = self.count
 		return reduceIndex("") { (prev:String, next:(value: Element, index: Int)) -> String in
-			let str = next.value as! String
+			let str = next.value as? String ?? ""
 			if next.index == count - 1 {
 				return prev + str
 			} else {

@@ -24,7 +24,8 @@ public extension UIView {
 	public var capture: UIImage? {
 		let layer = self.layer
 		UIGraphicsBeginImageContextWithOptions(self.frame.size, true, 0.0)
-		layer.render(in: UIGraphicsGetCurrentContext()!)
+		guard let context = UIGraphicsGetCurrentContext() else { return nil }
+		layer.render(in: context)
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		return image
@@ -33,7 +34,8 @@ public extension UIView {
 	public var fastCapture: UIImage? {
 		let layer = self.layer
 		UIGraphicsBeginImageContext(self.frame.size)
-		layer.render(in: UIGraphicsGetCurrentContext()!)
+		guard let context = UIGraphicsGetCurrentContext() else { return nil }
+		layer.render(in: context)
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		return image

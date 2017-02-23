@@ -10,25 +10,25 @@ import Photos
 
 public extension PHAsset {
 	//从资源获得针对尺寸的图片
-	func imageBySize(_ size:CGSize) -> UIImage {
+	func imageBySize(_ size:CGSize) -> UIImage? {
 		let scale = UIScreen.main.scale
 		let size = CGSize(width: size.width*scale, height: size.height*scale)
 		
 		let manager = PHImageManager.default()
 		let option = PHImageRequestOptions()
-		var thumbnail = UIImage()
+		var thumbnail:UIImage?
 		option.isSynchronous = true
 		option.isNetworkAccessAllowed = true
 		option.version = .current
 		option.deliveryMode = .fastFormat
 		manager.requestImage(for: self, targetSize: size, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
-			thumbnail = result!
+			thumbnail = result
 		})
 		return thumbnail
 	}
 	
 	//从资源获得图片
-	func image() -> UIImage {
+	func image() -> UIImage? {
 		let manager = PHImageManager.default()
 		let option = PHImageRequestOptions()
 		var image:UIImage? = nil
@@ -37,9 +37,11 @@ public extension PHAsset {
 		option.version = .current
 		option.deliveryMode = .fastFormat
 		manager.requestImageData(for: self, options: option) { (data, _, _, _) in
-			image = UIImage(data: data!)
+			if let data = data {
+				image = UIImage(data: data)
+			}
 		}
-		return image!
+		return image
 	}
 }
 

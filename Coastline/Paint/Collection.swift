@@ -31,7 +31,7 @@ struct CLCollection {
 		return CGSize(width: width, height: height)
 	}
 	
-	func rectForItem(_ index:Int) -> CGRect? {
+	func rectForItem(_ index:Int) -> CGRect {
 		let vIndex = vectorIndexOfIndex(index)
 		let nSize = itemSize()
 		return CGRect(x: insets.left + CGFloat(vIndex.1) * nSize.width,
@@ -46,7 +46,7 @@ struct CLCollection {
 	}
 	
 	static func setCellSizeForCollectionView(_ collectionView:UICollectionView, itemsInRow:Int, itemWidthHeightRate:CGFloat, totalWidth:CGFloat) -> CGSize {
-		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+		guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
 		let gaps = CGSize(width: layout.minimumInteritemSpacing+0.2, height: layout.minimumLineSpacing+0.2)
 		let sizeCollection = CLCollection(insets: layout.sectionInset, gaps: gaps, itemsInRow: itemsInRow, number: 100, totalWidth: totalWidth, heightWidthRate: itemWidthHeightRate)
 		layout.itemSize = sizeCollection.itemSize()
@@ -55,6 +55,6 @@ struct CLCollection {
 	
 	static func buildTabList(edge:CGFloat, gap:CGFloat, itemsInRow:Int, itemWidthHeightRate:CGFloat, totalWidth:CGFloat) -> [CGRect] {
 		let sizeCollection = CLCollection(insets: UIEdgeInsets(top: 0, left: edge, bottom: 0, right: edge), gaps: CGSize(width: gap, height: 0), itemsInRow: itemsInRow, number: itemsInRow, totalWidth: totalWidth, heightWidthRate: itemWidthHeightRate)
-		return (0..<itemsInRow).map { sizeCollection.rectForItem($0)! }
+		return (0..<itemsInRow).map { sizeCollection.rectForItem($0) }
 	}
 }

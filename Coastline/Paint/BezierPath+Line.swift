@@ -72,7 +72,7 @@ extension UIBezierPath {
 		let context = UIGraphicsGetCurrentContext()
 		let colors = [ from.2.cgColor, to.2.cgColor ]
 		let locations:[CGFloat] = [ 0, 1 ]
-		let gradient:CGGradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: locations)!
+		guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: locations) else { return }
 		
 		context?.saveGState()
 		self.addClip()
