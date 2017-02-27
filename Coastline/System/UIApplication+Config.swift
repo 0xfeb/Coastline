@@ -13,6 +13,7 @@ public extension UIApplication {
 	private static let APP_VERSION_KEY = "CFBundleShortVersionString"
 	private static let BUILD_VERSION_KEY = "CFBundleVersion"
 	private static let APP_NAME_KEY = "CFBundleDisplayName"
+	private static let BUNDLE_ID_KEY = "CFBundleIdentifier"
 	
 	// 获取应用的Scheme名称
 	public var scheme:String? {
@@ -47,6 +48,11 @@ public extension UIApplication {
 	// 获取应用编译版本
 	public var buildVerison:String? {
 		get { return configString(UIApplication.BUILD_VERSION_KEY) }
+	}
+	
+	// 获取BundleID
+	public var bundleId:String? {
+		get { return configString(UIApplication.BUNDLE_ID_KEY) }
 	}
 	
 	// 获取操作系统版本
