@@ -12,6 +12,10 @@ public extension CGPoint {
 	public init(_ x:Double,  _ y:Double) {
 		self.init(x: CGFloat(x), y: CGFloat(y))
 	}
+	
+	public func offsetOf(_ point:CGPoint) -> CGSize {
+		return CGSize(width: x - point.x, height: y - point.y)
+	}
 }
 
 public extension CGSize {
@@ -23,5 +27,9 @@ public extension CGSize {
 public extension CGRect {
 	public init(_ x:Double, _ y:Double, _ w:Double, _ h:Double) {
 		self.init(origin: CGPoint(x, y), size: CGSize(w, h))
+	}
+	
+	public init(center:CGPoint, size:CGSize) {
+		self.init(origin: CGPoint(x: center.x - size.width/2, y: center.y - size.height/2), size: size)
 	}
 }

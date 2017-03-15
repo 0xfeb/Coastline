@@ -10,10 +10,13 @@ import UIKit
 
 public extension CGRect {
 	public func bigger(_ size:CGSize) -> CGRect {
-		let w = max(size.width, 0) / 2
-		let h = max(size.height, 0) / 2
-		
-		return CGRect(x: minX+w, y: minY+h, width: width+w, height: height+h)
+//		let w = max(size.width, 0) / 2
+//		let h = max(size.height, 0) / 2
+//		
+//		
+//		
+//		return CGRect(x: minX+w, y: minY+h, width: width+w, height: height+h)
+		return insetBy(dx: -size.width, dy: -size.height)
 	}
 	
 	public func smaller(_ size:CGSize) -> CGRect {
