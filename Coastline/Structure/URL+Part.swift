@@ -27,6 +27,10 @@ public extension URL {
 		return self.host == host ? self : nil
 	}
 	
+	public func isSchemeAndHost(_ url:String) -> URL? {
+		return self.absoluteString.hasPrefix(url) ? self : nil
+	}
+	
 	public func isPath(_ path:String) -> URL? {
 		return self.path == path ? self : nil
 	}
