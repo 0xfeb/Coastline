@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreTelephony
 
 public extension UIApplication {
 	private static let LAST_VERSION_KEY = "lastVersion"
@@ -47,5 +48,22 @@ public extension UIApplication {
 			ud.setValue(version, forKey: UIApplication.LAST_BUILD_KEY)
 			ud.synchronize()
 		})
+	}
+	
+	public var agentString:String {
+		let system = "iOS"
+		let sysVersion = systemVersion
+		let appVersion = self.appVersion
+		let buildVersion = self.buildVerison
+		let network = networkType
+		
+		let model = UIDevice.current.model.replacingOccurrences(of: " ", with: "", options: [], range: nil)
+		
+		return "\(system);\(sysVersion);\(sysVersion);\(appVersion!);\(buildVersion!);\(network);\(model);;"
+	}
+	
+	public var networkType:String {
+		let ni = CTTelephonyNetworkInfo()
+		return ni.currentRadioAccessTechnology ?? "wifi"
 	}
 }
