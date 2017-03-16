@@ -53,13 +53,21 @@ public extension UIApplication {
 	public var agentString:String {
 		let system = "iOS"
 		let sysVersion = systemVersion
+		let mVersion = UIDevice.current.name
 		let appVersion = self.appVersion
 		let buildVersion = self.buildVerison
 		let network = networkType
 		
-		let model = UIDevice.current.model.replacingOccurrences(of: " ", with: "", options: [], range: nil)
+		var sysInfo = utsname()
+		uname(&sysInfo)
+		let machineMirror = Mirror(reflecting: sysInfo.machine)
+		let identifier = machineMirror.children.reduce("") { identifier, element in
+			guard let value = element.value as? Int8 , value != 0 else { return identifier }
+			return identifier + String(UnicodeScalar(UInt8(value)))
+		}
+		let model = identifier //UIDevice.current.model
 		
-		return "\(system);\(sysVersion);\(sysVersion);\(appVersion!);\(buildVersion!);\(network);\(model);;"
+		return "\(system);\(sysVersion);\(mVersion);\(appVersion!);\(buildVersion!);\(network);\(model);"
 	}
 	
 	public var networkType:String {
