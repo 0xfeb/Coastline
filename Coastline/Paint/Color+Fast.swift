@@ -42,4 +42,10 @@ public extension UIColor {
 		let _blue = max(min(CGFloat(blue) * level, 255.0), 0)
 		return UIColor(red: _red/255, green: _green/255, blue: _blue/255, alpha: 1)
 	}
+	
+	func mixed(color:UIColor) -> UIColor {
+		let (red,green,blue) = self.RGB
+		let (red1,green1,blue1) = color.RGB
+		return UIColor((red+red1)/2, (green+green1)/2, (blue+blue1)/2)
+	}
 }
