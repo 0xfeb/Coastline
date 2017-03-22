@@ -9,9 +9,14 @@
 import StoreKit
 
 @objc public class CLPay : NSObject {
+	public enum PayResult {
+		case faild(String)
+		case success(productId:String, transaction:SKPaymentTransaction)
+	}
+	
 	var buyNumber = 1
 	var request:SKProductsRequest?
-	var buyAction:(String, SKPaymentTransaction)->Void = { _ in }
+	var buyAction:(PayResult)->Void = { _ in }
 	
 	public func register() {
 		SKPaymentQueue.default().add(self)
@@ -37,22 +42,31 @@ import StoreKit
 		request?.delegate = self
 		request?.start()
 	}
+	
+	public func buyProduct(pid:String, response:@escaping (PayResult)->()) {
+		buyAction = response
+		getProduct(pid: pid)
+	}
 }
 
 extension CLPay: SKPaymentTransactionObserver {
 	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+		print("trans count", transactions.count)
 		for tran in transactions {
 			switch tran.transactionState {
 			case .purchasing :
-				print("show no deferred progress")
+				print("show no deferred progress", tran.payment.productIdentifier)
 			case .deferred:
-				print("show deferred progress")
+				print("show deferred progress", tran.payment.productIdentifier)
 			case .failed:
-				print("transaction failed")
+				print("transaction failed", tran.payment.productIdentifier)
+				buyAction(PayResult.faild("Pay error"))
 			case .purchased:
-				print("purchased")
+				print("purchased", tran.payment.productIdentifier)
+				let productId = tran.payment.productIdentifier
+				buyAction(PayResult.success(productId: productId, transaction: tran))
 			case .restored:
-				print("restored")
+				print("restored", tran.payment.productIdentifier)
 			}
 		}
 	}
@@ -62,6 +76,11 @@ extension CLPay: SKProductsRequestDelegate {
 	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
 		for errorId in response.invalidProductIdentifiers {
 			print("invalid Products :", errorId)
+		}
+		
+		if response.products.isEmpty {
+			buyAction(PayResult.faild("Can not find product"))
+			return
 		}
 		
 		for product in response.products {

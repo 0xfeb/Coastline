@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 public extension UIImage {
 	func saveToAlbum() {
@@ -31,3 +32,14 @@ public extension UIImage {
 		return ((try? data?.write(to: URL(fileURLWithPath: path), options: [.atomic])) != nil)
 	}
 }
+
+public extension CIImage {
+	public convenience init?(named:String) {
+		if let img = UIImage(named: named) {
+			self.init(image: img)
+		} else {
+			return nil
+	}
+}
+}
+
