@@ -108,4 +108,39 @@ public extension UIApplication {
 		
 		return nil
 	}
+	
+	public func appInfo(_ name:String) -> (AppId:String, AppSec:String)? {
+		guard let d = config("third_app") as? [String:[String:String]] else { return nil }
+		guard let dict = d[name], let aid = dict["app_id"] else { return nil }
+		let sec = dict["app_sec"] ?? ""
+		return (AppId:aid, AppSec:sec)
+	}
+	
+	public var curAppInfo:(AppId:String?, AppSec:String?) {
+		guard let d = config("current_app") as? [String:[String:String]] else { return (nil, nil) }
+		guard let dict = d["info"] else { return (nil, nil) }
+		let aid = dict["app_id"]
+		let sec = dict["app_sec"]
+		return (AppId:aid, AppSec:sec)
+	}
+	
+	public var channel:String? {
+		guard let d = config("current_app") as? [String:[String:String]] else { return nil }
+		guard let dict = d["info"] else { return nil }
+		return dict["channel"]
+	}
+	
+	public func switchKey(key:String) -> String? {
+		guard let d = config("current_app") as? [String:[String:String]] else { return nil }
+		guard let dict = d["switchs"] else { return nil }
+		return dict[key]
+	}
+	
+	public func baseUrl(module:String?) -> String? {
+		guard let d = config("current_app") as? [String:[String:String]] else { return nil }
+		guard let dict = d["base_urls"] else { return nil }
+		let m = module ?? "*"
+		guard let url = dict[m] else { return dict["*"] }
+		return url
+	}
 }
