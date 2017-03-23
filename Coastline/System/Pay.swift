@@ -17,9 +17,23 @@ import StoreKit
 	var buyNumber = 1
 	var request:SKProductsRequest?
 	var buyAction:(PayResult)->Void = { _ in }
+	var customUserId:String?
 	
-	public func register() {
+	var lastTransId:String = ""
+	var compLock = NSLock()
+	var compQueue = OperationQueue()
+	
+	public static var shareInstance:CLPay = { CLPay() }()
+	
+	public func register() -> Bool {
+		compQueue.maxConcurrentOperationCount = 1
+		
+		if !SKPaymentQueue.canMakePayments() {
+			return false
+		}
+		
 		SKPaymentQueue.default().add(self)
+		return true
 	}
 	
 	deinit{
@@ -29,6 +43,9 @@ import StoreKit
 	public func addPayment(product:SKProduct) {
 		let payment = SKMutablePayment(product: product)
 		payment.quantity = buyNumber
+		if let uid = customUserId {
+			payment.applicationUsername = uid
+		}
 		SKPaymentQueue.default().add(payment)
 	}
 	
@@ -57,18 +74,35 @@ extension CLPay: SKPaymentTransactionObserver {
 			case .purchasing :
 				print("show no deferred progress", tran.payment.productIdentifier)
 			case .deferred:
-				print("show deferred progress", tran.payment.productIdentifier)
+				print("---show deferred progress", tran.payment.productIdentifier)
 			case .failed:
-				print("transaction failed", tran.payment.productIdentifier)
+				print("transaction failed ---- \(tran.error)")
 				buyAction(PayResult.faild("Pay error"))
+				SKPaymentQueue.default().finishTransaction(tran)
 			case .purchased:
-				print("purchased", tran.payment.productIdentifier)
-				let productId = tran.payment.productIdentifier
-				buyAction(PayResult.success(productId: productId, transaction: tran))
+				compQueue.addOperation { [weak self, tran] in
+					self?.doPuchase(tran: tran)
+				}
 			case .restored:
-				print("restored", tran.payment.productIdentifier)
+				print("restored ----", tran.payment.productIdentifier)
+				SKPaymentQueue.default().finishTransaction(tran)
 			}
 		}
+	}
+	
+	func doPuchase(tran:SKPaymentTransaction) {
+		compLock.lock()
+		print("transId", tran.transactionIdentifier!, self.lastTransId)
+		if let transId = tran.transactionIdentifier, transId != self.lastTransId {
+			print("set up ", self.lastTransId, transId)
+			self.lastTransId = transId
+			
+			print("purchased ----", transId, tran.payment.productIdentifier)
+			let productId = tran.payment.productIdentifier
+			buyAction(PayResult.success(productId: productId, transaction: tran))
+			SKPaymentQueue.default().finishTransaction(tran)
+		}
+		compLock.unlock()
 	}
 }
 
@@ -84,6 +118,7 @@ extension CLPay: SKProductsRequestDelegate {
 		}
 		
 		for product in response.products {
+			print("-------")
 			addPayment(product: product)
 		}
 	}
