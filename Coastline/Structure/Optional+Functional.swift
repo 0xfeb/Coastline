@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Optional {
+public extension Optional {
 	// 解封一个对象并且执行一个函数
 	func act(_ event:(Wrapped)->()) -> Optional {
 		if let n = self { event(n) }

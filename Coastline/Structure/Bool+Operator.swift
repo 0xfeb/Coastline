@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Bool {
+public extension Bool {
 	// 将T类型的对象打包起来
 	func packOptional<T>(_ t:T) -> T? {
 		return self ? t : nil

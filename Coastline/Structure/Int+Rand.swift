@@ -8,13 +8,13 @@
 
 import Foundation
 
-func arc4random<T:Integer> (type: T.Type) -> T {
+public func arc4random<T:Integer> (type: T.Type) -> T {
 	var r: T = 0
 	arc4random_buf(&r, MemoryLayout<T>.size)
 	return r
 }
 
-extension UInt64 {
+public extension UInt64 {
 	static func random(lower: UInt64 = min, upper: UInt64 = max) -> UInt64 {
 		var m: UInt64
 		let u = upper - lower

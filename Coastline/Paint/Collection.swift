@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CLCollection {
+public struct CLCollection {
 	var insets:UIEdgeInsets
 	var gaps:CGSize
 	var itemsInRow:Int

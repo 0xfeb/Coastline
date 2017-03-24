@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Int {
+public extension Int {
 	init(hexChar:Character) {
 		switch hexChar {
 		case "0": self = 0

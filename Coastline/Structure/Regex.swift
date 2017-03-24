@@ -31,7 +31,7 @@ public class CLRegex {
 
 infix operator =~
 
-func =~ (input:String, pattern:String) -> Bool {
+public func =~ (input:String, pattern:String) -> Bool {
 	if let reg = CLRegex(pattern) {
 		return reg.test(input)
 	}
