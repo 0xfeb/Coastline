@@ -76,7 +76,7 @@ public extension UIView {
 	
 	
 	
-	func startWaiting(title:String, timeout:TimeInterval = 5.0) {
+	public func startWaiting(title:String, timeout:TimeInterval = 5.0) {
 		killWaiting()
 		
 		let backView = UIView(frame: self.bounds)
@@ -119,12 +119,12 @@ public extension UIView {
 		}
 	}
 	
-	func killWaiting() {
+	public func killWaiting() {
 		let view = self.viewWithTag(12301)
 		view?.removeFromSuperview()
 	}
 	
-	func startHud(title:String, timeout:TimeInterval = 0.0) {
+	public func startHud(title:String, timeout:TimeInterval = 0.0) {
 		killHud()
 		
 		let textSize = title.textSize(UIFont.systemFont(ofSize: 14))
@@ -151,14 +151,14 @@ public extension UIView {
 		}
 	}
 	
-	func stopHud() {
+	public func stopHud() {
 		let view = self.viewWithTag(12302)
 		view?.unPopOut(0.2, completion: { [weak self] (r) in
 			self?.killHud()
 		})
 	}
 	
-	func killHud() {
+	public func killHud() {
 		let view = self.viewWithTag(12302)
 		view?.removeFromSuperview()
 	}
