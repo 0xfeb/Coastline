@@ -20,7 +20,7 @@ public extension String {
 		let pStyle = NSMutableParagraphStyle()
 		pStyle.lineBreakMode = wordwarp
 		let rect = (self as NSString).boundingRect(with: maxSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName:font, NSParagraphStyleAttributeName:pStyle, NSKernAttributeName:NSNumber(value: Float(kern))], context: nil)
-		return CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: rect.height+1)
+		return CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: rect.height+1).integral
 	}
 	
 	// 绘制字符串
