@@ -17,7 +17,7 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 		self.dataSource = self
 		self.delegate = self
 		self.pages = pages
-		self.setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+		self.setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
 	}
 	
 	open func gotoPage(index:Int, direction:UIPageViewControllerNavigationDirection = .forward) {
@@ -25,7 +25,9 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 		
 		if index < pages.count {
 			let page = pages[index]
-			self.setViewControllers([page], direction: direction, animated: true, completion: nil)
+			OperationQueue.main.addOperation { [weak self] in
+				self?.setViewControllers([page], direction: direction, animated: false, completion: nil)
+			}
 		}
 	}
 	
