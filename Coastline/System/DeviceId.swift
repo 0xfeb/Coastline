@@ -11,6 +11,8 @@ import KeychainAccess
 
 /// 设备唯一ID
 public class DeviceId {
+	public static var shareInstance:DeviceId { return DeviceId() }
+	
 	public func readFromStorage() -> String? {
 		let ud = UserDefaults.standard
 		return ud.string(forKey: "inappkey4")
