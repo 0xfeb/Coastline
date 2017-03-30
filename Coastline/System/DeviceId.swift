@@ -11,7 +11,7 @@ import KeychainAccess
 
 /// 设备唯一ID
 public class DeviceId {
-	public static var shareInstance:DeviceId { return DeviceId() }
+	public static var shareInstance:DeviceId = { DeviceId() }()
 	
 	public func readFromStorage() -> String? {
 		let ud = UserDefaults.standard
