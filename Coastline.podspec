@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Coastline"
-  s.version      = "0.4.7"
+  s.version      = "0.5.0"
   s.summary      = "Coastline swift3 library"
 
   # This description is used to generate tags and improve search results.
@@ -132,5 +132,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "KeychainAccess"
 
 end
