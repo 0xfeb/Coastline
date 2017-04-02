@@ -92,6 +92,7 @@
 		6CFE2DFB1DD6AC6B0059E54F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CFE2DF91DD6AC6B0059E54F /* LaunchScreen.storyboard */; };
 		6CFE2E021DD6ACA80059E54F /* Coastline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CE8EA361DBB5D4000C952E2 /* Coastline.framework */; };
 		6CFEBE611E08FED9006FEFFA /* MultiLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFEBE601E08FED9006FEFFA /* MultiLanguage.swift */; };
+		6CFFDA511E8E62C90036AAF9 /* Image+Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFDA501E8E62C90036AAF9 /* Image+Filter.swift */; };
 		CDD773B30891D821A3A0899E /* Pods_Coastline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78DE800506D833B9D704AC9 /* Pods_Coastline.framework */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +207,7 @@
 		6CFE2DFA1DD6AC6B0059E54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CFE2DFC1DD6AC6B0059E54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CFEBE601E08FED9006FEFFA /* MultiLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLanguage.swift; sourceTree = "<group>"; };
+		6CFFDA501E8E62C90036AAF9 /* Image+Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Filter.swift"; sourceTree = "<group>"; };
 		B78DE800506D833B9D704AC9 /* Pods_Coastline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coastline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -320,6 +322,7 @@
 				6CE8EA621DBB5EBB00C952E2 /* Context+Frame.swift */,
 				6CE8EA6D1DBB5ECF00C952E2 /* Image+Color.swift */,
 				6CE8EA6E1DBB5ECF00C952E2 /* Image+File.swift */,
+				6CFFDA501E8E62C90036AAF9 /* Image+Filter.swift */,
 				6CE8EA791DBB5EEB00C952E2 /* MutableAttributeString+Warpper.swift */,
 				6CE8EA891DBB5F3900C952E2 /* Rect+Part.swift */,
 				6C82EC961E683EC200E79336 /* Rect+Fast.swift */,
@@ -648,6 +651,7 @@
 				6CE8EA801DBB5EFB00C952E2 /* OperationQueue+Proc.swift in Sources */,
 				6C4DE6491E687DEC000DC6CD /* Timer+Fast.swift in Sources */,
 				6C5425CA1E4AF2C300F8ECB4 /* Range.swift in Sources */,
+				6CFFDA511E8E62C90036AAF9 /* Image+Filter.swift in Sources */,
 				6CE8EA8C1DBB5F3900C952E2 /* Rect+Part.swift in Sources */,
 				6CE8EA6F1DBB5ECF00C952E2 /* Image+Color.swift in Sources */,
 				6CE8EA901DBB5F3D00C952E2 /* Regex.swift in Sources */,

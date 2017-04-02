@@ -33,13 +33,5 @@ public extension UIImage {
 	}
 }
 
-public extension CIImage {
-	public convenience init?(named:String) {
-		if let img = UIImage(named: named) {
-			self.init(image: img)
-		} else {
-			return nil
-	}
-}
-}
+
 

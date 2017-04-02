@@ -11,7 +11,7 @@ import UIKit
 public extension CALayer {
 	public func addCycleAnimation() {
 		let ani = CABasicAnimation(keyPath: "transform.rotation.z")
-		ani.toValue = NSNumber(value: M_PI * 15)
+		ani.toValue = NSNumber(value: Double.pi * 15)
 		ani.duration = 8
 		ani.repeatCount = 20
 		self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
