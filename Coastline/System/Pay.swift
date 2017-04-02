@@ -76,7 +76,7 @@ extension CLPay: SKPaymentTransactionObserver {
 			case .deferred:
 				print("---show deferred progress", tran.payment.productIdentifier)
 			case .failed:
-				print("transaction failed ---- \(tran.error)")
+				print("transaction failed ---- \(tran.error ?? "")")
 				buyAction(PayResult.faild("Pay error"))
 				SKPaymentQueue.default().finishTransaction(tran)
 			case .purchased:
