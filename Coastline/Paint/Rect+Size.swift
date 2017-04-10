@@ -10,13 +10,8 @@ import UIKit
 
 public extension CGRect {
 	public func bigger(_ size:CGSize) -> CGRect {
-//		let w = max(size.width, 0) / 2
-//		let h = max(size.height, 0) / 2
-//		
-//		
-//		
-//		return CGRect(x: minX+w, y: minY+h, width: width+w, height: height+h)
-		return insetBy(dx: -size.width, dy: -size.height)
+		let newSize = CGSize(width: self.width + size.width, height: self.height + size.height)
+		return CGRect(center:self.center, size:newSize)
 	}
 	
 	public func smaller(_ size:CGSize) -> CGRect {
@@ -24,10 +19,10 @@ public extension CGRect {
 	}
 	
 	public func bigger(rate: CGSize) -> CGRect {
-		let newSize = CGSize(width:self.size.width * rate.width, height:self.size.height * rate.height)
+		let newSize = CGSize(width:self.size.width * (rate.width-1), height:self.size.height * (rate.height-1))
 		return bigger(newSize)
 	}
-
+	
 	public func bigger(rate: CGFloat) -> CGRect {
 		return bigger(rate: CGSize(width:rate, height:rate))
 	}
