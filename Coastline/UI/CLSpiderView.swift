@@ -19,12 +19,14 @@ public class CLSpiderView: UIView {
 		}
 	}
 	
+	public var maxScore:Int = 5
+	
 	public override func draw(_ rect: CGRect) {
 		let rc = rect.insetBy(dx: 0.5, dy: 0.5)
-		drawZhiZhuBack(rect: rc, step: 4)
+		drawZhiZhuBack(rect: rc, step: maxScore)
 		
 		let  prc = self.bounds.bigger(rate: CGFloat(currentRate))
-		drawScore(items: [2, 3, 3, 4, 4], rect: prc, step: 4)
+		drawScore(items: numbers, rect: prc, step: maxScore)
 	}
 	
 	func  scoreTimerAction() {
