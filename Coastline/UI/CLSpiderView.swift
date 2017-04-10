@@ -13,9 +13,10 @@ public class CLSpiderView: UIView {
 	public var color1:UIColor = UIColor(colorLiteralRed: 0, green: 1, blue: 1, alpha: 0.4)
 	var currentRate:CGFloat = 0
 	var timer:Timer?
-	
-	public func startAnimation() {
-		timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(scoreTimerAction), userInfo: nil, repeats: true)
+	public var numbers:[Int] = [0, 0, 0, 0, 0] {
+		didSet {
+			timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(scoreTimerAction), userInfo: nil, repeats: true)
+		}
 	}
 	
 	public override func draw(_ rect: CGRect) {
