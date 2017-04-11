@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Coastline"
-  s.version      = "0.6.9"
+  s.version      = "0.7.0"
   s.summary      = "Coastline swift3 library"
 
   # This description is used to generate tags and improve search results.

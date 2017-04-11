@@ -53,13 +53,33 @@ public class CLAreaView: UIView {
 		
 		switch offset {
 		case 0:
-			return UIBezierPath(arcCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: false)
+			let path = UIBezierPath()
+			path.move(to: r.center)
+			path.addLine(to: CGPoint(x:r.right, y:r.top + r.centerV))
+			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: false)
+			path.close()
+			return path
 		case 1:
-			return UIBezierPath(arcCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi / 2.0), clockwise: true)
+			let path = UIBezierPath()
+			path.move(to: r.center)
+			path.addLine(to: CGPoint(x:r.right, y:r.top + r.centerV))
+			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi / 2.0), clockwise: true)
+			path.close()
+			return path
 		case 2:
-			return UIBezierPath(arcCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi / 2.0), endAngle: CGFloat(Double.pi), clockwise: true)
+			let path = UIBezierPath()
+			path.move(to: r.center)
+			path.addLine(to: CGPoint(x:r.right + r.centerH, y:r.bottom))
+			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi / 2.0), endAngle: CGFloat(Double.pi), clockwise: true)
+			path.close()
+			return path
 		case 3:
-			return UIBezierPath(arcCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi), endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: true)
+			let path = UIBezierPath()
+			path.move(to: r.center)
+			path.addLine(to: CGPoint(x:r.left, y:r.top + r.centerV))
+			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi), endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: true)
+			path.close()
+			return path
 		default:
 			return nil
 		}
