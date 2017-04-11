@@ -12,7 +12,7 @@ public class CLAreaView: UIView {
 	public var colors:[UIColor] = [UIColor(colorLiteralRed: 1, green: 0, blue: 1, alpha: 0.4),
 	                               UIColor(colorLiteralRed: 0, green: 1, blue: 1, alpha: 0.4),
 	                               UIColor(colorLiteralRed: 0, green: 0, blue: 1, alpha: 0.4),
-	                               UIColor(colorLiteralRed: 1, green: 0, blue: 1, alpha: 0.4)]
+	                               UIColor(colorLiteralRed: 1, green: 1, blue: 0, alpha: 0.4)]
 	
 	var currentRate:CGFloat = 0
 	var timer:Timer?
@@ -23,11 +23,12 @@ public class CLAreaView: UIView {
 	}
 	
 	public var maxScore:Int = 5
-
+	
 	public override func draw(_ rect: CGRect) {
-		let  prc = self.bounds.bigger(rate: CGFloat(currentRate))
+		let prc = rect.bigger(rate: currentRate).squreInside().integral
+		
 		drawScore(items: scores, rect: prc, step: maxScore)
-    }
+	}
 	
 	func scoreTimerAction() {
 		currentRate += 0.1
@@ -49,35 +50,39 @@ public class CLAreaView: UIView {
 	}
 	
 	func pathOfScore(item:Int, offset:Int, rect:CGRect, step:Int) -> UIBezierPath? {
-		let r = rect.bigger(rate: CGFloat(item)/CGFloat(step))
+		let prc = rect.bigger(rate: CGFloat(item)/CGFloat(step))
 		
 		switch offset {
 		case 0:
 			let path = UIBezierPath()
-			path.move(to: r.center)
-			path.addLine(to: CGPoint(x:r.right, y:r.top + r.centerV))
-			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: false)
+			path.move(to: prc.center)
+			path.addLine(to: CGPoint(x:prc.right, y:prc.midY))
+			path.addArc(withCenter: prc.center, radius: prc.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: false)
+			path.addLine(to: prc.center)
 			path.close()
 			return path
 		case 1:
 			let path = UIBezierPath()
-			path.move(to: r.center)
-			path.addLine(to: CGPoint(x:r.right, y:r.top + r.centerV))
-			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi / 2.0), clockwise: true)
+			path.move(to: prc.center)
+			path.addLine(to: CGPoint(x:prc.right, y:prc.midY))
+			path.addArc(withCenter: prc.center, radius: prc.height / 2.0, startAngle: 0, endAngle: CGFloat(Double.pi / 2.0), clockwise: true)
+			path.addLine(to: prc.center)
 			path.close()
 			return path
 		case 2:
 			let path = UIBezierPath()
-			path.move(to: r.center)
-			path.addLine(to: CGPoint(x:r.right + r.centerH, y:r.bottom))
-			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi / 2.0), endAngle: CGFloat(Double.pi), clockwise: true)
+			path.move(to: prc.center)
+			path.addLine(to: CGPoint(x:prc.midX, y:prc.bottom))
+			path.addArc(withCenter: prc.center, radius: prc.height / 2.0, startAngle: CGFloat(Double.pi / 2.0), endAngle: CGFloat(Double.pi), clockwise: true)
+			path.addLine(to: prc.center)
 			path.close()
 			return path
 		case 3:
 			let path = UIBezierPath()
-			path.move(to: r.center)
-			path.addLine(to: CGPoint(x:r.left, y:r.top + r.centerV))
-			path.addArc(withCenter: r.center, radius: rect.height / 2.0, startAngle: CGFloat(Double.pi), endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: true)
+			path.move(to: prc.center)
+			path.addLine(to: CGPoint(x:prc.left, y:prc.midY))
+			path.addArc(withCenter: prc.center, radius: prc.height / 2.0, startAngle: CGFloat(Double.pi), endAngle: CGFloat(Double.pi * 3.0 / 2.0), clockwise: true)
+			path.addLine(to: prc.center)
 			path.close()
 			return path
 		default:
