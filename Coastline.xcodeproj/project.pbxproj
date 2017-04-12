@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C17C35B1E815B1A009D95FE /* Number+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C17C35A1E815B1A009D95FE /* Number+Convert.swift */; };
 		6C30E5851E9C89E9004752E8 /* CLAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C30E5841E9C89E9004752E8 /* CLAreaView.swift */; };
+		6C30E5931E9CE1B7004752E8 /* CLCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C30E5921E9CE1B7004752E8 /* CLCycleView.swift */; };
 		6C4DE6491E687DEC000DC6CD /* Timer+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */; };
 		6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */; };
 		6C5425C81E4AF15000F8ECB4 /* Rect+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */; };
@@ -376,6 +377,7 @@
 		65D1C3BE3FCA900CCDAE4B44 /* Pods-Coastline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coastline.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coastline/Pods-Coastline.release.xcconfig"; sourceTree = "<group>"; };
 		6C17C35A1E815B1A009D95FE /* Number+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number+Convert.swift"; sourceTree = "<group>"; };
 		6C30E5841E9C89E9004752E8 /* CLAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLAreaView.swift; sourceTree = "<group>"; };
+		6C30E5921E9CE1B7004752E8 /* CLCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCycleView.swift; sourceTree = "<group>"; };
 		6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+Fast.swift"; sourceTree = "<group>"; };
 		6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Animate.swift"; sourceTree = "<group>"; };
 		6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rect+Operation.swift"; sourceTree = "<group>"; };
@@ -1111,6 +1113,7 @@
 				6CED39441E848E9E00015D5F /* StateButton.swift */,
 				6C8F26481E9B9159005C8CE6 /* CLSpiderView.swift */,
 				6C30E5841E9C89E9004752E8 /* CLAreaView.swift */,
+				6C30E5921E9CE1B7004752E8 /* CLCycleView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1730,6 +1733,7 @@
 				6CE8EA4A1DBB5E5A00C952E2 /* Array+Operator.swift in Sources */,
 				6CE8EAA21DBB5F5900C952E2 /* TableView+Fast.swift in Sources */,
 				6CD652D21E0BDFEF003C026B /* Counter.swift in Sources */,
+				6C30E5931E9CE1B7004752E8 /* CLCycleView.swift in Sources */,
 				6CE8EA6C1DBB5EC800C952E2 /* Dictionary+Operator.swift in Sources */,
 				6CE8EAAA1DBB5F6A00C952E2 /* View+Design.swift in Sources */,
 				6CE8EAA51DBB5F6100C952E2 /* UIApplication+Config.swift in Sources */,
