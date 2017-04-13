@@ -9,7 +9,9 @@
 import Foundation
 
 public extension String {
-	// 获取MD5加密, 使用soffes/Crypto替代原来的md5
+	public var md5: String {
+		return MD5(self)
+	}
 	
 	// 获取Base64加密
 	public var base64Enc: String? {
