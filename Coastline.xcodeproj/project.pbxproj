@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0AABF21EA84EFB0029DA62 /* Layer+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AABF11EA84EFB0029DA62 /* Layer+Anchor.swift */; };
 		6C17C35B1E815B1A009D95FE /* Number+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C17C35A1E815B1A009D95FE /* Number+Convert.swift */; };
 		6C4DE6491E687DEC000DC6CD /* Timer+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */; };
 		6C53650A1E0CFA3F00042280 /* ViewController+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */; };
@@ -112,6 +113,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C0AABF11EA84EFB0029DA62 /* Layer+Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Layer+Anchor.swift"; sourceTree = "<group>"; };
 		6C17C35A1E815B1A009D95FE /* Number+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number+Convert.swift"; sourceTree = "<group>"; };
 		6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+Fast.swift"; sourceTree = "<group>"; };
 		6C5365091E0CFA3F00042280 /* ViewController+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Animate.swift"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				6CE8EA5B1DBB5EA600C952E2 /* CanvasView.swift */,
 				6CE8EA731DBB5ED800C952E2 /* Label+Calc.swift */,
 				6CE8EA7B1DBB5EF100C952E2 /* NavigationController+Fast.swift */,
+				6C0AABF11EA84EFB0029DA62 /* Layer+Anchor.swift */,
 				6C6FE4AC1E890E1D00CD3206 /* Layer+Animation.swift */,
 				6CE8EA851DBB5F2900C952E2 /* PageViewController.swift */,
 				6CE8EA931DBB5F4A00C952E2 /* Storyboard+Fast.swift */,
@@ -577,6 +580,7 @@
 				6C9AA3F41E32004700FED151 /* View+Animation.swift in Sources */,
 				6CE8EA841DBB5F1E00C952E2 /* Optional+Functional.swift in Sources */,
 				6CB8DAE61E34C33500F18D26 /* URL+Part.swift in Sources */,
+				6C0AABF21EA84EFB0029DA62 /* Layer+Anchor.swift in Sources */,
 				6C8BC0FD1E025EC90083042F /* Rate.swift in Sources */,
 				6CE8EA5A1DBB5EA200C952E2 /* Button+Image.swift in Sources */,
 				6CE8EAA61DBB5F6100C952E2 /* UIApplication+Version.swift in Sources */,

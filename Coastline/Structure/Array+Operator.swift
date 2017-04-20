@@ -11,7 +11,7 @@ import Foundation
 public extension Array {
 	
 	// 获取数组中的任一元素
-	var any:Element? {
+	public var any:Element? {
 		get {
 			let itemCount = count
 			if itemCount == 0 {
@@ -28,7 +28,7 @@ public extension Array {
 	}
 	
 	// 根据查询条件, 获取数组中的某一元素
-	func one(_ finder:(Element)->Bool) -> Element? {
+	public func one(_ finder:(Element)->Bool) -> Element? {
 		for n in self {
 			if finder(n) { return n }
 		}
@@ -36,7 +36,7 @@ public extension Array {
 	}
 	
 	// 根据查询条件, 获取数组中的某一元素(反向查询)
-	func oneRev(_ finder:(Element)->Bool) -> Element? {
+	public func oneRev(_ finder:(Element)->Bool) -> Element? {
 		for i in indices.reversed() {	//使用indices的reversed, 而不是self的reversed, 可以减少内存占用
 			let n = self[i]
 			if finder(n) { return n }
@@ -45,7 +45,7 @@ public extension Array {
 	}
 	
 	// 根据查询条件, 获取数组中的Index值
-	func oneIndex(_ finder:(Element)->Bool) -> Index? {
+	public func oneIndex(_ finder:(Element)->Bool) -> Index? {
 		for i in indices {
 			let n = self[i]
 			if finder(n) { return i }
@@ -54,7 +54,7 @@ public extension Array {
 	}
 	
 	// 根据查询条件, 获取数组中的Index值(反向查询)
-	func oneIndexRev(_ finder:(Element)->Bool) -> Index? {
+	public func oneIndexRev(_ finder:(Element)->Bool) -> Index? {
 		let count = self.count
 		if count == 0 { return nil }
 		
@@ -66,7 +66,7 @@ public extension Array {
 	}
 	
 	// 交换某两个元素的位置
-	mutating func exchange(_ one:Index, _ another:Index) {
+	public mutating func exchange(_ one:Index, _ another:Index) {
 		let swap = self[one]
 		self[one] = self[another]
 		self[another] = swap
@@ -74,32 +74,32 @@ public extension Array {
 	
 	
 	// Map函数的带Index版本
-	func mapIndex<T>(_ event:@escaping (_ value:Element, _ index:Int)->T) -> [T] {
+	public func mapIndex<T>(_ event:@escaping (_ value:Element, _ index:Int)->T) -> [T] {
 		return indices.map{ event(self[$0], $0) }
 	}
 	
 	// ForEach函数的带Index版本
-	func forEachIndex(_ event:@escaping (_ value:Element, _ index:Int)->()) {
+	public func forEachIndex(_ event:@escaping (_ value:Element, _ index:Int)->()) {
 		indices.forEach{ event(self[$0], $0) }
 	}
 	
 	// FlatMap函数的带Index版本
-	func flatMapIndex<T>(_ event:@escaping (_ value:Element, _ index:Int)->T?) -> [T] {
+	public func flatMapIndex<T>(_ event:@escaping (_ value:Element, _ index:Int)->T?) -> [T] {
 		return indices.flatMap{ event(self[$0], $0) }
 	}
 	
 	// Reduce函数的带Index版本
-	func reduceIndex<T>(_ inital:T, combine:(T, (value:Element, index:Int))->T) -> T {
+	public func reduceIndex<T>(_ inital:T, combine:(T, (value:Element, index:Int))->T) -> T {
 		return indices.reduce(inital, { combine($0, (value:self[$1], index:$1)) })
 	}
 	
 	// Filter函数的带Index版本
-	func filterIndex(_ event:@escaping (_ value:Element, _ index:Int)->Bool) -> [Element] {
+	public func filterIndex(_ event:@escaping (_ value:Element, _ index:Int)->Bool) -> [Element] {
 		return indices.filter{ event(self[$0], $0) }.map{ self[$0] }
 	}
 	
 	// 判断每个元素都符合验证
-	func isAll(_ checker:(_ value:Element)->Bool) -> Bool {
+	public func isAll(_ checker:(_ value:Element)->Bool) -> Bool {
 		for n in self {
 			if checker(n) == false { return false }
 		}
@@ -107,7 +107,7 @@ public extension Array {
 	}
 	
 	// 判断任一一个元素符合验证
-	func isAny(_ checker:(_ value:Element)->Bool) -> Bool {
+	public func isAny(_ checker:(_ value:Element)->Bool) -> Bool {
 		for n in self {
 			if checker(n) == true { return true }
 		}
@@ -115,7 +115,7 @@ public extension Array {
 	}
 	
 	// 字符串类型的数组合并, 这是一个危险的函数, 只适用于[String], 如果是其它类型, 则会有问题.
-	func combine(_ sep:String) -> String {
+	public func combine(_ sep:String) -> String {
 		let count = self.count
 		return reduceIndex("") { (prev:String, next:(value: Element, index: Int)) -> String in
 			let str = next.value as? String ?? ""
@@ -127,7 +127,7 @@ public extension Array {
 		}
 	}
 	
-	func toDict<Key, Value>(_ combiner:(Element)->(Key, Value)) -> [Key:Value] {
+	public func toDict<Key, Value>(_ combiner:(Element)->(Key, Value)) -> [Key:Value] {
 		var result:[Key:Value] = [:]
 		
 		for n in self {
@@ -142,7 +142,7 @@ public extension Array {
 public extension Array where Element:Equatable {
 	
 	// 搜索并且删除元素
-	mutating func removeItem(_ item:Element) {
+	public mutating func removeItem(_ item:Element) {
 		for i in self.indices {
 			if self[i] == item {
 				self.remove(at: i)
@@ -151,7 +151,7 @@ public extension Array where Element:Equatable {
 	}
 	
 	// 搜索并且删除元素(只删除第一个搜索到的)
-	mutating func removeOneItem(_ item:Element) {
+	public mutating func removeOneItem(_ item:Element) {
 		for i in self.indices {
 			if self[i] == item {
 				self.remove(at: i)
@@ -161,7 +161,7 @@ public extension Array where Element:Equatable {
 	}
 	
 	// 搜索并且删除元素(只删除最后一个搜索到的)
-	mutating func removeOneItemRev(_ item:Element) {
+	public mutating func removeOneItemRev(_ item:Element) {
 		for i in self.indices.reversed() {
 			if self[i] == item {
 				self.remove(at: i)
@@ -171,7 +171,7 @@ public extension Array where Element:Equatable {
 	}
 	
 	// 获取一个元素的Index
-	func indexOf(_ item:Element) -> Index? {
+	public func indexOf(_ item:Element) -> Index? {
 		return oneIndex{
 			return item == $0
 		}
@@ -179,18 +179,18 @@ public extension Array where Element:Equatable {
 
 	
 	
-	func include(element:Element) -> Bool {
+	public func include(element:Element) -> Bool {
 		return isAny{ $0 == element }
 	}
 	
-	func includeAny(array:[Element]) -> Bool {
+	public func includeAny(array:[Element]) -> Bool {
 		return isAny{
 			let n = $0
 			return array.isAny{ [n] in $0 == n }
 		}
 	}
 	
-	func includeAll(array:[Element]) -> Bool {
+	public func includeAll(array:[Element]) -> Bool {
 		return array.isAll{
 			let n = $0
 			return self.isAny{ [n] in $0 == n }
