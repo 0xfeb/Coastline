@@ -12,4 +12,11 @@ public extension Data {
 	var string:String? {
 		return NSString(data: self, encoding: String.Encoding.utf8.rawValue) as String?
 	}
+	
+	var prettyJsonString:String? {
+		guard let dict = try? JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions.allowFragments) else { return nil }
+		guard let d = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted) else { return nil }
+		
+		return d.string
+	}
 }
