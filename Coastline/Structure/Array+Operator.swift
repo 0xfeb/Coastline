@@ -198,3 +198,88 @@ public extension Array where Element:Equatable {
 	}
 }
 
+public extension Array where Element:UnsignedInteger {
+	public init(from:Element, to:Element, step:Int) {
+		var items = Array<Element>()
+		var curItem = from
+		while curItem < to {
+			items.append(curItem)
+			curItem = curItem.advanced(by: step)
+		}
+		self.init(items)
+	}
+	
+	public init(from:Element, to:Element, count:Int) {
+		let step = to.distance(to: from) / count
+		self.init(from:from, to:to, step:step)
+	}
+}
+
+public extension Array where Element:SignedInteger {
+	
+	public init(from:Element, to:Element, step:Int) {
+		var items = Array<Element>()
+		var curItem = from
+		while curItem < to {
+			items.append(curItem)
+			curItem = curItem.advanced(by: step)
+		}
+		self.init(items)
+	}
+	
+	public init(from:Element, to:Element, count:Int) {
+		let step = to.distance(to: from) / count
+		self.init(from:from, to:to, step:step)
+	}
+}
+
+public extension Array where Element == Float {
+	public init(from:Element, to:Element, step:Element) {
+		var items = Array<Element>()
+		var curItem = from
+		while curItem < to {
+			items.append(curItem)
+			curItem = curItem.advanced(by: step)
+		}
+		self.init(items)
+	}
+	
+	public init(from:Element, to:Element, count:Element) {
+		let step = to.distance(to: from) / count
+		self.init(from:from, to:to, step:step)
+	}
+}
+
+public extension Array where Element == CGFloat {
+	public init(from:Element, to:Element, step:Element) {
+		var items = Array<Element>()
+		var curItem = from
+		while curItem < to {
+			items.append(curItem)
+			curItem = curItem.advanced(by: step)
+		}
+		self.init(items)
+	}
+	
+	public init(from:Element, to:Element, count:Element) {
+		let step = to.distance(to: from) / count
+		self.init(from:from, to:to, step:step)
+	}
+}
+
+public extension Array where Element == Double {
+	public init(from:Element, to:Element, step:Element) {
+		var items = Array<Element>()
+		var curItem = from
+		while curItem < to {
+			items.append(curItem)
+			curItem = curItem.advanced(by: step)
+		}
+		self.init(items)
+	}
+	
+	public init(from:Element, to:Element, count:Element) {
+		let step = to.distance(to: from) / count
+		self.init(from:from, to:to, step:step)
+	}
+}
