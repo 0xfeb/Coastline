@@ -70,3 +70,11 @@ public extension UIView {
 		return col.totalHeight()
 	}
 }
+
+public extension UICollectionView {
+	public func setupStyle(itemsInRow:Int, hwRate:CGFloat) {
+		guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+		let size = CLCollection.setCellSizeForCollectionView(self, itemsInRow: itemsInRow, itemWidthHeightRate: hwRate, totalWidth: self.bounds.width)
+		layout.itemSize = size
+	}
+}
