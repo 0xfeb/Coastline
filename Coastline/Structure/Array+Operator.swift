@@ -9,6 +9,13 @@
 import Foundation
 
 public extension Array {
+	public func value(at:Int) -> Element? {
+		if at < 0 || at >= self.count {
+			return nil
+		}
+		
+		return self[at]
+	}
 	
 	// 获取数组中的任一元素
 	public var any:Element? {
