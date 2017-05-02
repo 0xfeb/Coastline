@@ -66,25 +66,71 @@ public extension UIView {
 	public var l_centerYWithinMargins:CLViewWithAttribute { return layout(.centerYWithinMargins) }
 	public var l_notAnAttribute:CLViewWithAttribute { return layout(.notAnAttribute) }
 	
-	public func addConstaintView(view:UIView, insets:UIEdgeInsets) {
+	public func addConstaint(view:UIView, insets:UIEdgeInsets) {
 		let cTop = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: insets.top)
 		let cBottom = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: insets.bottom)
 		let cLeft = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: insets.left)
 		let cRight = NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: insets.right)
 		
 		view.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(view)
 		self.addConstraints([cTop, cBottom, cLeft, cRight])
 	}
 	
-	public func addConstaintView(view:UIView, center:CGPoint, size:CGSize) {
+	public func addConstaint(view:UIView, center:CGPoint, size:CGSize) {
 		let cCenterX = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: center.x)
 		let cCenterY = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: center.y)
 		let cWidth = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.width)
 		let cHeight = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.height)
 		
 		view.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(view)
 		self.addConstraints([cCenterX, cCenterY, cWidth, cHeight])
+	}
+	
+	public func addConstaint(view:UIView, outSide:CGRectEdge, offset:CGFloat, size:CGSize) {
+		let cCenterX = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: center.x)
+		let cCenterY = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: center.y)
+		let cWidth = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.width)
+		let cHeight = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.height)
+		
+		view.translatesAutoresizingMaskIntoConstraints = false
+		
+		switch outSide {
+		case .minXEdge:
+			let cLeft = NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: offset)
+			self.addConstraints([cLeft, cCenterY, cWidth, cHeight])
+		case .maxXEdge:
+			let cRight = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: offset)
+			self.addConstraints([cRight, cCenterY, cWidth, cHeight])
+		case .minYEdge:
+			let cTop = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: offset)
+			self.addConstraints([cTop, cCenterX, cWidth, cHeight])
+		case .maxYEdge:
+			let cBottom = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: offset)
+			self.addConstraints([cBottom, cCenterX, cWidth, cHeight])
+		}
+	}
+	
+	public func addConstaint(view:UIView, inSide:CGRectEdge, offset:CGFloat, size:CGSize) {
+		let cCenterX = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: center.x)
+		let cCenterY = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: center.y)
+		let cWidth = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.width)
+		let cHeight = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.height)
+		
+		view.translatesAutoresizingMaskIntoConstraints = false
+		
+		switch inSide {
+		case .minXEdge:
+			let cLeft = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: offset)
+			self.addConstraints([cLeft, cCenterY, cWidth, cHeight])
+		case .maxXEdge:
+			let cRight = NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: offset)
+			self.addConstraints([cRight, cCenterY, cWidth, cHeight])
+		case .minYEdge:
+			let cTop = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: offset)
+			self.addConstraints([cTop, cCenterX, cWidth, cHeight])
+		case .maxYEdge:
+			let cBottom = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: offset)
+			self.addConstraints([cBottom, cCenterX, cWidth, cHeight])
+		}
 	}
 }

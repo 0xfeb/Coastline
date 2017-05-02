@@ -104,29 +104,38 @@ public extension UIViewController {
 		let backView = UIView(frame: self.view.bounds)
 		backView.backgroundColor = UIColor(10, 10, 10, 50)
 		self.view.addSubview(backView)
-		up.frameCenterH = self.view.frameCenterH
-		up.frameBottom = 0
-		down.frameCenterH = self.view.frameCenterH
-		down.frameTop = self.view.bounds.height
+		self.view.addConstaint(view: backView, insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
 		backView.addSubview(up)
 		backView.addSubview(down)
+		backView.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
+		backView.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
 		
-		backView.
+		up.layoutIfNeeded()
+		down.layoutIfNeeded()
 		
 		UIView.animate(withDuration: time, animations: { 
-			up.frameBottom = self.view.frameCenterV - centerOffsetOfUp
-			down.frameTop = self.view.frameCenterV + centerOffsetOfDown
+			up.removeConstraints(up.constraints)
+			down.removeConstraints(down.constraints)
+			backView.addConstaint(view: up, center: CGPoint(x:0, y:up.bounds.size.height / 2 - 100), size: up.bounds.size)
+			backView.addConstaint(view: down, center: CGPoint(x:0, y: 0 - down.bounds.size.height / 2 - 80), size: down.bounds.size)
+			
+			up.layoutIfNeeded()
+			down.layoutIfNeeded()
 		}, completion: { _ in
 			complete()
 		})
 	}
 	
 	public func openView(up:UIView, down:UIView, time:TimeInterval, complete:@escaping ()->Void) {
+		let backView = up.superview
 		UIView.animate(withDuration: time, animations: { 
-			up.frameBottom = 0
-			down.frameTop = self.view.bounds.height
+			backView?.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
+			backView?.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
+			
+			up.layoutIfNeeded()
+			down.layoutIfNeeded()
 		}, completion: { _ in
-			up.superview?.removeFromSuperview()
+			backView?.removeFromSuperview()
 			complete()
 		})
 	}
