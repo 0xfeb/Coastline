@@ -110,6 +110,9 @@ public extension UIViewController {
 		down.frameTop = self.view.bounds.height
 		backView.addSubview(up)
 		backView.addSubview(down)
+		
+		backView.
+		
 		UIView.animate(withDuration: time, animations: { 
 			up.frameBottom = self.view.frameCenterV - centerOffsetOfUp
 			down.frameTop = self.view.frameCenterV + centerOffsetOfDown
