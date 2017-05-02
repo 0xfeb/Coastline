@@ -99,4 +99,32 @@ public extension UIViewController {
 			})
 		}
 	}
+	
+	public func closeView(up:UIView, down:UIView, centerOffsetOfUp:CGFloat, centerOffsetOfDown:CGFloat, time:TimeInterval, complete:@escaping ()->Void) {
+		let backView = UIView(frame: self.view.bounds)
+		backView.backgroundColor = UIColor(10, 10, 10, 50)
+		self.view.addSubview(backView)
+		up.frameCenterH = self.view.frameCenterH
+		up.frameBottom = 0
+		down.frameCenterH = self.view.frameCenterH
+		down.frameTop = self.view.bounds.height
+		backView.addSubview(up)
+		backView.addSubview(down)
+		UIView.animate(withDuration: time, animations: { 
+			up.frameBottom = self.view.frameCenterV - centerOffsetOfUp
+			down.frameTop = self.view.frameCenterV + centerOffsetOfDown
+		}, completion: { _ in
+			complete()
+		})
+	}
+	
+	public func openView(up:UIView, down:UIView, time:TimeInterval, complete:@escaping ()->Void) {
+		UIView.animate(withDuration: time, animations: { 
+			up.frameBottom = 0
+			down.frameTop = self.view.bounds.height
+		}, completion: { _ in
+			up.superview?.removeFromSuperview()
+			complete()
+		})
+	}
 }
