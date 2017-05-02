@@ -104,20 +104,22 @@ public extension UIViewController {
 		let backView = UIView(frame: self.view.bounds)
 		backView.backgroundColor = UIColor(10, 10, 10, 50)
 		self.view.addSubview(backView)
-		self.view.addConstaint(view: backView, insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
+		_ = self.view.addConstaint(view: backView, insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
 		backView.addSubview(up)
 		backView.addSubview(down)
-		backView.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
-		backView.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
+		up.removeConstraints(up.constraints)
+		down.removeConstraints(down.constraints)
+		let csUp = backView.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
+		let csDown = backView.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
 		
 		up.layoutIfNeeded()
 		down.layoutIfNeeded()
 		
 		UIView.animate(withDuration: time, animations: { 
-			up.removeConstraints(up.constraints)
-			down.removeConstraints(down.constraints)
-			backView.addConstaint(view: up, center: CGPoint(x:0, y:up.bounds.size.height / 2 - 100), size: up.bounds.size)
-			backView.addConstaint(view: down, center: CGPoint(x:0, y: 0 - down.bounds.size.height / 2 - 80), size: down.bounds.size)
+			backView.removeConstraints(csUp)
+			backView.removeConstraints(csDown)
+			_ = backView.addConstaint(view: up, center: CGPoint(x:0, y:up.bounds.size.height / 2 - 100), size: up.bounds.size)
+			_ = backView.addConstaint(view: down, center: CGPoint(x:0, y: 0 - down.bounds.size.height / 2 - 80), size: down.bounds.size)
 			
 			up.layoutIfNeeded()
 			down.layoutIfNeeded()
@@ -127,15 +129,18 @@ public extension UIViewController {
 	}
 	
 	public func openView(up:UIView, down:UIView, time:TimeInterval, complete:@escaping ()->Void) {
-		let backView = up.superview
-		UIView.animate(withDuration: time, animations: { 
-			backView?.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
-			backView?.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
+		guard let backView = up.superview else { return }
+		UIView.animate(withDuration: time, animations: {
+			backView.removeConstraints(backView.constraints)
+			_ = self.view.addConstaint(view: backView, insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
+			
+			_ = backView.addConstaint(view: up, outSide: .minYEdge, offset: 0, size: up.bounds.size)
+			_ = backView.addConstaint(view: down, outSide: .maxYEdge, offset: 0, size: down.bounds.size)
 			
 			up.layoutIfNeeded()
 			down.layoutIfNeeded()
 		}, completion: { _ in
-			backView?.removeFromSuperview()
+			backView.removeFromSuperview()
 			complete()
 		})
 	}
