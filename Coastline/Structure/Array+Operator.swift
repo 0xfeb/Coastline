@@ -144,6 +144,13 @@ public extension Array {
 		
 		return result
 	}
+	
+	public var randomItem:Element? {
+		if self.isEmpty { return nil }
+		
+		let rand = Int(arc4random()) % self.count
+		return self[rand]
+	}
 }
 
 public extension Array where Element:Equatable {
