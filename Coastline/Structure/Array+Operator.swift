@@ -190,7 +190,7 @@ public extension Array where Element:Equatable {
 			return item == $0
 		}
 	}
-
+	
 	
 	
 	public func include(element:Element) -> Bool {
@@ -224,7 +224,7 @@ public extension Array where Element:UnsignedInteger {
 	}
 	
 	public init(from:Element, to:Element, count:Int) {
-		let step = to.distance(to: from) / count
+		let step = from.distance(to: to) / count
 		self.init(from:from, to:to, step:step)
 	}
 }
@@ -242,7 +242,7 @@ public extension Array where Element:SignedInteger {
 	}
 	
 	public init(from:Element, to:Element, count:Int) {
-		let step = to.distance(to: from) / count
+		let step = from.distance(to: to) / count
 		self.init(from:from, to:to, step:step)
 	}
 }
@@ -259,7 +259,7 @@ public extension Array where Element == Float {
 	}
 	
 	public init(from:Element, to:Element, count:Element) {
-		let step = to.distance(to: from) / count
+		let step = from.distance(to: to) / count
 		self.init(from:from, to:to, step:step)
 	}
 }
@@ -276,7 +276,7 @@ public extension Array where Element == CGFloat {
 	}
 	
 	public init(from:Element, to:Element, count:Element) {
-		let step = to.distance(to: from) / count
+		let step = from.distance(to: to) / count
 		self.init(from:from, to:to, step:step)
 	}
 }
@@ -293,7 +293,7 @@ public extension Array where Element == Double {
 	}
 	
 	public init(from:Element, to:Element, count:Element) {
-		let step = to.distance(to: from) / count
+		let step = from.distance(to: to) / count
 		self.init(from:from, to:to, step:step)
 	}
 }
