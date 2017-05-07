@@ -342,6 +342,7 @@
 		6CE8EAAA1DBB5F6A00C952E2 /* View+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE8EAA71DBB5F6A00C952E2 /* View+Design.swift */; };
 		6CE8EAAB1DBB5F6A00C952E2 /* View+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE8EAA81DBB5F6A00C952E2 /* View+Fast.swift */; };
 		6CE8EAAC1DBB5F6A00C952E2 /* View+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE8EAA91DBB5F6A00C952E2 /* View+Frame.swift */; };
+		6CEAE3F01EBF46E80078AAA9 /* Coastline.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6CEAE3EF1EBF46E80078AAA9 /* Coastline.podspec */; };
 		6CED39451E848E9E00015D5F /* StateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CED39441E848E9E00015D5F /* StateButton.swift */; };
 		6CFB45EB1E26203C003C985D /* String+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB45EA1E26203C003C985D /* String+Part.swift */; };
 		6CFE2DE21DD6A8760059E54F /* CoastlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFE2DE11DD6A8760059E54F /* CoastlineTests.swift */; };
@@ -716,6 +717,7 @@
 		6CE8EAA71DBB5F6A00C952E2 /* View+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Design.swift"; sourceTree = "<group>"; };
 		6CE8EAA81DBB5F6A00C952E2 /* View+Fast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Fast.swift"; sourceTree = "<group>"; };
 		6CE8EAA91DBB5F6A00C952E2 /* View+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Frame.swift"; sourceTree = "<group>"; };
+		6CEAE3EF1EBF46E80078AAA9 /* Coastline.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Coastline.podspec; sourceTree = "<group>"; };
 		6CED39441E848E9E00015D5F /* StateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateButton.swift; sourceTree = "<group>"; };
 		6CFB45EA1E26203C003C985D /* String+Part.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Part.swift"; sourceTree = "<group>"; };
 		6CFE2DDF1DD6A8760059E54F /* CoastlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoastlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1060,6 +1062,7 @@
 		6CE8EA2C1DBB5D4000C952E2 = {
 			isa = PBXGroup;
 			children = (
+				6CEAE3EF1EBF46E80078AAA9 /* Coastline.podspec */,
 				6CE8EA381DBB5D4000C952E2 /* Coastline */,
 				6CFE2DE01DD6A8760059E54F /* CoastlineTests */,
 				6CFE2DEF1DD6AC6B0059E54F /* testCoastline */,
@@ -1567,6 +1570,7 @@
 				6C7B7E3E1E96228C00889B14 /* clean.js in Resources */,
 				6C7B7E4F1E96228C00889B14 /* django.js in Resources */,
 				6C7B7E691E96228C00889B14 /* groovy.js in Resources */,
+				6CEAE3F01EBF46E80078AAA9 /* Coastline.podspec in Resources */,
 				6C7B7E731E96228C00889B14 /* ini.js in Resources */,
 				6C7B7F121E96228C00889B14 /* qtcreator_light.css in Resources */,
 				6C7B7EBF1E96228C00889B14 /* tap.js in Resources */,

@@ -225,7 +225,11 @@ public extension Array where Element:UnsignedInteger {
 	
 	public init(from:Element, to:Element, count:Int) {
 		let step = from.distance(to: to) / count
-		self.init(from:from, to:to, step:step)
+		if step == 0 {
+			self.init([from, to])
+		} else {
+			self.init(from:from, to:to, step:step)
+		}
 	}
 }
 
@@ -243,7 +247,11 @@ public extension Array where Element:SignedInteger {
 	
 	public init(from:Element, to:Element, count:Int) {
 		let step = from.distance(to: to) / count
-		self.init(from:from, to:to, step:step)
+		if step == 0 {
+			self.init([from, to])
+		} else {
+			self.init(from:from, to:to, step:step)
+		}
 	}
 }
 
