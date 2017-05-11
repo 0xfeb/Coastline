@@ -16,6 +16,7 @@
 		6C5425C81E4AF15000F8ECB4 /* Rect+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */; };
 		6C5425CA1E4AF2C300F8ECB4 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5425C91E4AF2C300F8ECB4 /* Range.swift */; };
 		6C59CBEF1E0142B600A70A64 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C59CBEE1E0142B600A70A64 /* String+URL.swift */; };
+		6C5CE78D1EC478E600AF99BF /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5CE78C1EC478E600AF99BF /* CLButton.swift */; };
 		6C6FE4AD1E890E1D00CD3206 /* Layer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6FE4AC1E890E1D00CD3206 /* Layer+Animation.swift */; };
 		6C78AC1B1E36EECD001B8B52 /* URL+Req.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */; };
 		6C7B7AFC1E95F76C00889B14 /* BezierPath+Sharp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7B7AFB1E95F76C00889B14 /* BezierPath+Sharp.swift */; };
@@ -387,6 +388,7 @@
 		6C5425C71E4AF15000F8ECB4 /* Rect+Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rect+Operation.swift"; sourceTree = "<group>"; };
 		6C5425C91E4AF2C300F8ECB4 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		6C59CBEE1E0142B600A70A64 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
+		6C5CE78C1EC478E600AF99BF /* CLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		6C6FE4AC1E890E1D00CD3206 /* Layer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Layer+Animation.swift"; sourceTree = "<group>"; };
 		6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Req.swift"; sourceTree = "<group>"; };
 		6C7B7AFB1E95F76C00889B14 /* BezierPath+Sharp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BezierPath+Sharp.swift"; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 				6C8F26481E9B9159005C8CE6 /* CLSpiderView.swift */,
 				6C30E5841E9C89E9004752E8 /* CLAreaView.swift */,
 				6C30E5921E9CE1B7004752E8 /* CLCycleView.swift */,
+				6C5CE78C1EC478E600AF99BF /* CLButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1736,6 +1739,7 @@
 				6CE8EA901DBB5F3D00C952E2 /* Regex.swift in Sources */,
 				6CE8EA761DBB5EDF00C952E2 /* Location+Fast.swift in Sources */,
 				6C30E5851E9C89E9004752E8 /* CLAreaView.swift in Sources */,
+				6C5CE78D1EC478E600AF99BF /* CLButton.swift in Sources */,
 				6CE8EA5C1DBB5EA600C952E2 /* CanvasView.swift in Sources */,
 				6CE8EA631DBB5EBB00C952E2 /* Context+Draw.swift in Sources */,
 				6CE8EA511DBB5E7100C952E2 /* AttributeString+Attribute.swift in Sources */,
