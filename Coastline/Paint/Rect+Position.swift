@@ -51,6 +51,14 @@ public extension CGRect {
 		}
 	}
 	
+	public func inside(_ edge:CGRectEdge, size:CGSize) -> CGRect {
+		return inside(edge, width: size.width).resizeByCenter(size: size)
+	}
+	
+	public func outside(_ edge:CGRectEdge, size:CGSize) -> CGRect {
+		return outside(edge, width: size.width).resizeByCenter(size: size)
+	}
+	
 	public func move(offset:CGSize) -> CGRect {
 		let pt = CGPoint(x:self.center.x + offset.width, y:self.center.y + offset.height)
 		return CGRect(center: pt, size: self.size)
