@@ -8,18 +8,18 @@
 
 import UIKit
 
-class CLButton : UIButton {
-	enum `Type` : Int {
+public class CLButton : UIButton {
+	public enum `Type` : Int {
 		case leftImage = 0
 		case rightImage = 1
 		case topImage = 2
 		case bottomImage = 3
 	}
 	
-	var gapBetweenImageText:CGFloat = 4.0
-	var type:Type = .leftImage
-	@IBInspectable var showSize:CGSize = CGSize()
-	@IBInspectable var L0R1T2B3ImagePos:Int  {
+	public var gapBetweenImageText:CGFloat = 4.0
+	public var type:Type = .leftImage
+	@IBInspectable public var showSize:CGSize = CGSize()
+	@IBInspectable public var L0R1T2B3ImagePos:Int  {
 		get {
 			return type.rawValue
 		}
@@ -28,8 +28,8 @@ class CLButton : UIButton {
 		}
 	}
 	
-	var defaultFont:UIFont?
-	override func didMoveToSuperview() {
+	public var defaultFont:UIFont?
+	public override func didMoveToSuperview() {
 		super.didMoveToSuperview()
 		
 		titleLabel?.textAlignment = .center
@@ -41,11 +41,11 @@ class CLButton : UIButton {
 		setNeedsLayout()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
-	override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
+	public override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
 		guard let image = image(for: .normal), let text = title(for: .normal), let font = defaultFont else { return contentRect }
 		
 		
@@ -70,7 +70,7 @@ class CLButton : UIButton {
 		}
 	}
 	
-	override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+	public override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
 		guard let image = image(for: .normal), let text = title(for: .normal), let font = defaultFont else { return contentRect }
 		
 		let imageSize = self.showSize.width == 0 ? image.size : showSize
