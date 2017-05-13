@@ -264,18 +264,22 @@ class TransContainer : NSObject {
 		items.container.insertSubview(b, belowSubview: items.to.view)
 		
 		items.from.view.isUserInteractionEnabled = false
-		items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale * 0.8, height:items.container.bounds.height * popScale.scale * 0.8))
+		//		items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale * 0.8, height:items.container.bounds.height * popScale.scale * 0.8))
+		items.to.view.transform = CGAffineTransform(scaleX: popScale.scale * 0.8, y: popScale.scale * 0.8)
 		UIView.animate(withDuration: transitionDuration(using: context),
 		               delay: 0,
 		               usingSpringWithDamping: 0.55,
 		               initialSpringVelocity: 1 / 0.88,
 		               options: [],
 		               animations: {
-						items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale, height:items.container.bounds.height * popScale.scale))
+						items.to.view.transform = CGAffineTransform(scaleX: popScale.scale, y: popScale.scale)
 		}) { (finish) in
 			context.completeTransition(!context.transitionWasCancelled)
 			
 			items.container.insertSubview(items.from.view, belowSubview: b)
+			
+			items.to.view.transform = CGAffineTransform.identity
+			items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale, height:items.container.bounds.height * popScale.scale))
 		}
 	}
 	
@@ -284,6 +288,7 @@ class TransContainer : NSObject {
 		
 		items.from.view.isUserInteractionEnabled = false
 		items.container.bringSubview(toFront: items.from.view)
+		let originFrame = items.to.view.frame
 		UIView.animate(withDuration: transitionDuration(using: context),
 		               animations: {
 						items.from.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
@@ -296,6 +301,8 @@ class TransContainer : NSObject {
 			}
 			
 			context.completeTransition(!context.transitionWasCancelled)
+			
+			items.to.view.frame = originFrame
 		}
 	}
 }
