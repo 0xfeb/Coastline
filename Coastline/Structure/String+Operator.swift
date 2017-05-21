@@ -36,4 +36,19 @@ public extension String {
 	public func subStringTo(_ index:Int) -> String {
 		return self.substring(to: self.characters.index(self.startIndex, offsetBy: index))
 	}
+	
+	//
+	public func containChar(chars:CharacterSet) -> Bool {
+		for c in self.unicodeScalars {
+			if chars.contains(c) { return true }
+		}
+		return false
+	}
+	
+	public func isChars(chars:CharacterSet) -> Bool {
+		for c in self.unicodeScalars {
+			if !chars.contains(c) { return false }
+		}
+		return true
+	}
 }
