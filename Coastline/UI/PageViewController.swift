@@ -42,8 +42,10 @@ open class CLPageViewController: UIPageViewController, UIPageViewControllerDataS
 		currentPage = 0
 	}
 	
-	open func gotoPage(index:Int, direction:UIPageViewControllerNavigationDirection = .forward) {
+	open func gotoPage(index:Int) {
 		if pages.count < 2 { return }
+		
+		let direction = index > currentPage ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
 		
 		if index < pages.count {
 			let page = pages[index]
