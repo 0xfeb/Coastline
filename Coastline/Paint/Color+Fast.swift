@@ -9,11 +9,11 @@
 import UIKit
 
 public extension UIColor {
-	convenience init(_ red:Int, _ green:Int, _ blue:Int, _ alpha:Int = 255) {
+	public convenience init(_ red:Int, _ green:Int, _ blue:Int, _ alpha:Int = 255) {
 		self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
 	}
 	
-	convenience init(hex:String) {
+	public convenience init(hex:String) {
 		let colorText = hex.hasPrefix("#") ? hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1)) : hex
 		
 		let red = Int(hex:colorText[0..<2])
@@ -23,7 +23,7 @@ public extension UIColor {
 		self.init(red, green, blue)
 	}
 	
-	var RGB:(Int, Int, Int) {
+	public var RGB:(Int, Int, Int) {
 		var red:CGFloat = 0, green:CGFloat = 0, blue:CGFloat = 0, alpha:CGFloat = 0, white:CGFloat = 0
 		if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
 			return (Int(Double(red)*255.0), Int(Double(green)*255.0), Int(Double(blue)*255))
@@ -35,7 +35,7 @@ public extension UIColor {
 		}
 	}
 	
-	func darker(_ level:CGFloat) -> UIColor {
+	public func darker(_ level:CGFloat) -> UIColor {
 		let (red,green,blue) = self.RGB
 		let _red = max(min(CGFloat(red) * level, 255.0), 0)
 		let _green = max(min(CGFloat(green) * level, 255.0), 0)
@@ -43,9 +43,13 @@ public extension UIColor {
 		return UIColor(red: _red/255, green: _green/255, blue: _blue/255, alpha: 1)
 	}
 	
-	func mixed(color:UIColor) -> UIColor {
+	public func mixed(color:UIColor) -> UIColor {
 		let (red,green,blue) = self.RGB
 		let (red1,green1,blue1) = color.RGB
 		return UIColor((red+red1)/2, (green+green1)/2, (blue+blue1)/2)
+	}
+	
+	public var image:UIImage? {
+		return UIImage.colorImage(self)
 	}
 }
