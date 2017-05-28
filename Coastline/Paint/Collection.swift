@@ -72,9 +72,10 @@ public extension UIView {
 }
 
 public extension UICollectionView {
-	public func setupStyle(itemsInRow:Int, hwRate:CGFloat) {
-		guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+	public func setupStyle(itemsInRow:Int, hwRate:CGFloat) -> CGSize {
+		guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
 		let size = CLCollection.setCellSizeForCollectionView(self, itemsInRow: itemsInRow, itemWidthHeightRate: hwRate, totalWidth: self.bounds.width)
 		layout.itemSize = size
+		return size
 	}
 }
