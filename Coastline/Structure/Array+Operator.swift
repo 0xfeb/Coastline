@@ -152,18 +152,23 @@ public extension Array {
 		return self[rand]
 	}
 	
+	public mutating func shuffle(){
+		for i in 0..<(count-1){
+			let j = Int(arc4random_uniform(UInt32(count-i)))+i
+			
+			if i != j {
+				swap(&self[i], &self[j])
+			}
+		}
+	}
+	
 	public func randomList(num:Int) -> [Element] {
 		if self.count <= num { return self }
 		
 		var source = self
-		var result:[Element] = []
-		for _ in 0..<num {
-			if let item = source.randomItem {
-				result.append(item)
-			}
-		}
-		return result
- 	}
+		source.shuffle()
+		return Array(source[0..<num])
+	}
 }
 
 public extension Array where Element:Equatable {
