@@ -151,6 +151,19 @@ public extension Array {
 		let rand = Int(arc4random()) % self.count
 		return self[rand]
 	}
+	
+	public func randomList(num:Int) -> [Element] {
+		if self.count <= num { return self }
+		
+		var source = self
+		var result:[Element] = []
+		for _ in 0..<num {
+			if let item = source.randomItem {
+				result.append(item)
+			}
+		}
+		return result
+ 	}
 }
 
 public extension Array where Element:Equatable {
