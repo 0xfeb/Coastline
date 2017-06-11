@@ -19,6 +19,7 @@
 		6C5CE78D1EC478E600AF99BF /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5CE78C1EC478E600AF99BF /* CLButton.swift */; };
 		6C6618D71ED87868005E42FF /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6618D61ED87868005E42FF /* TextBox.swift */; };
 		6C6FE4AD1E890E1D00CD3206 /* Layer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6FE4AC1E890E1D00CD3206 /* Layer+Animation.swift */; };
+		6C750A4D1EED493800275331 /* SystemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C750A4C1EED493800275331 /* SystemConfig.swift */; };
 		6C78AC1B1E36EECD001B8B52 /* URL+Req.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */; };
 		6C7B7AFC1E95F76C00889B14 /* BezierPath+Sharp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7B7AFB1E95F76C00889B14 /* BezierPath+Sharp.swift */; };
 		6C7B7E241E96228C00889B14 /* full.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B7D211E96228B00889B14 /* full.txt */; };
@@ -393,6 +394,7 @@
 		6C5CE78C1EC478E600AF99BF /* CLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		6C6618D61ED87868005E42FF /* TextBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
 		6C6FE4AC1E890E1D00CD3206 /* Layer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Layer+Animation.swift"; sourceTree = "<group>"; };
+		6C750A4C1EED493800275331 /* SystemConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemConfig.swift; sourceTree = "<group>"; };
 		6C78AC1A1E36EECD001B8B52 /* URL+Req.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Req.swift"; sourceTree = "<group>"; };
 		6C7B7AFB1E95F76C00889B14 /* BezierPath+Sharp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BezierPath+Sharp.swift"; sourceTree = "<group>"; };
 		6C7B7D211E96228B00889B14 /* full.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = full.txt; sourceTree = "<group>"; };
@@ -1211,6 +1213,7 @@
 				6CFEBE601E08FED9006FEFFA /* MultiLanguage.swift */,
 				6CB8DAE31E34B35F00F18D26 /* Pay.swift */,
 				6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */,
+				6C750A4C1EED493800275331 /* SystemConfig.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1754,6 +1757,7 @@
 				6CE8EA7E1DBB5EF500C952E2 /* NotificationCenter.swift in Sources */,
 				6CE8EA721DBB5ED400C952E2 /* Int+Convert.swift in Sources */,
 				6CDBCF001E6F871000C681A5 /* ScrollView+Fast.swift in Sources */,
+				6C750A4D1EED493800275331 /* SystemConfig.swift in Sources */,
 				6CE8EA4A1DBB5E5A00C952E2 /* Array+Operator.swift in Sources */,
 				6CE8EAA21DBB5F5900C952E2 /* TableView+Fast.swift in Sources */,
 				6CD652D21E0BDFEF003C026B /* Counter.swift in Sources */,

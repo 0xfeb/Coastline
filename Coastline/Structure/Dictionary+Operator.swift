@@ -28,7 +28,7 @@ public extension Dictionary {
 	}
 }
 
-public extension Dictionary where Key:Equatable {
+public extension Dictionary where Key : Equatable {
 	func val<T>(_ key:String) -> T? {
 		return self[key as! Key] as? T
 	}
