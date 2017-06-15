@@ -153,4 +153,16 @@ public extension UIView {
 			return cs
 		}
 	}
+	
+	public func autoWidthConstraint(width:CGFloat) {
+		if let n = self.constraints.index(where: { $0.firstAttribute == .width })  {
+			self.constraints[n].constant = width
+		}
+	}
+	
+	public func autoHeightConstraint(height:CGFloat) {
+		if let n = self.constraints.index(where: { $0.firstAttribute == .height })  {
+			self.constraints[n].constant = height
+		}
+	}
 }
