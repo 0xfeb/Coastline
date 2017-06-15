@@ -22,4 +22,9 @@ public extension UIButton {
 		setBackgroundImage(UIImage(named: perfix+UIButton.backImageSurfix.disable), for: .disabled)
 	}
 	
+	public func autoWidthConstraint() {
+		if let n = self.constraints.index(where: { $0.firstAttribute == .width })  {
+			self.constraints[n].constant = self.titleRect(forContentRect: self.contentRect(forBounds: self.bounds)).width
+		}
+	}
 }
