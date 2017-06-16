@@ -102,7 +102,7 @@ public extension UIViewController {
 	
 	public func closeView(up:UIView, down:UIView, centerOffsetOfUp:CGFloat, centerOffsetOfDown:CGFloat, time:TimeInterval, complete:@escaping ()->Void) {
 		let backView = UIView(frame: self.view.bounds)
-		backView.backgroundColor = UIColor(10, 10, 10, 50)
+		backView.backgroundColor = UIColor(r:10, g:10, b:10, a:50)
 		self.view.addSubview(backView)
 		_ = self.view.addConstaint(view: backView, insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
 		backView.addSubview(up)

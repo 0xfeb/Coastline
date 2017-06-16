@@ -9,8 +9,8 @@
 import UIKit
 
 public extension UIColor {
-	public convenience init(_ red:Int, _ green:Int, _ blue:Int, _ alpha:Int = 255) {
-		self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
+	public convenience init(r:Int, g:Int, b:Int, a:Int = 100) {
+		self.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: CGFloat(a)/100.0)
 	}
 	
 	public convenience init(hex:String) {
@@ -20,33 +20,57 @@ public extension UIColor {
 		let green = Int(hex:colorText[2..<4])
 		let blue = Int(hex:colorText[4..<6])
 		
-		self.init(red, green, blue)
-	}
-	
-	public var RGB:(Int, Int, Int) {
-		var red:CGFloat = 0, green:CGFloat = 0, blue:CGFloat = 0, alpha:CGFloat = 0, white:CGFloat = 0
-		if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-			return (Int(Double(red)*255.0), Int(Double(green)*255.0), Int(Double(blue)*255))
-		} else if self.getWhite(&white, alpha: &alpha) {
-			let color = Int(Double(white)*255.0)
-			return (color, color, color)
+		if colorText.characters.count > 6 {
+			let alpha = Int(Float(Int(hex:colorText[6..<8])) / 2.55)
+			self.init(r: red, g: green, b: blue, a: alpha)
 		} else {
-			return (0, 0, 0)
+			self.init(r: red, g: green, b: blue)
 		}
 	}
 	
+	public convenience init(h:Int, s:Int, b:Int, a:Int = 100) {
+		self.init(hue: CGFloat(h)/360.0, saturation: CGFloat(s)/100.0, brightness: CGFloat(b)/100.0, alpha: CGFloat(a)/100.0)
+	}
+	
+	public var RGBA:(Int, Int, Int, Int) {
+		var red:CGFloat = 0, green:CGFloat = 0, blue:CGFloat = 0, alpha:CGFloat = 0, white:CGFloat = 0
+		if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+			return (Int(Double(red)*255.0), Int(Double(green)*255.0), Int(Double(blue)*255), Int(Double(alpha)*100.0))
+		} else if self.getWhite(&white, alpha: &alpha) {
+			let color = Int(Double(white)*255.0)
+			return (color, color, color, Int(Double(alpha)*100.0))
+		} else {
+			return (0, 0, 0, 0)
+		}
+	}
+	
+	public var HSBA:(Int, Int, Int, Int) {
+		var h:CGFloat = 0, s:CGFloat = 0, b:CGFloat = 0, a:CGFloat = 0
+		if getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
+			return (Int(Double(h)*360.0), Int(Double(s)*100.0), Int(Double(b)*100.0), Int(Double(a)*100.0))
+		} else {
+			return (0, 0, 0, 0)
+		}
+	}
+	
+	public func ligher(_ level:CGFloat) -> UIColor {
+		let (h, s, b, a) = HSBA
+		let db = Int(level * 100) + b
+		let nb = min(max(db, 0), 100)
+		return UIColor(h: h, s: s, b: nb, a: a)
+	}
+	
 	public func darker(_ level:CGFloat) -> UIColor {
-		let (red,green,blue) = self.RGB
-		let _red = max(min(CGFloat(red) * level, 255.0), 0)
-		let _green = max(min(CGFloat(green) * level, 255.0), 0)
-		let _blue = max(min(CGFloat(blue) * level, 255.0), 0)
-		return UIColor(red: _red/255, green: _green/255, blue: _blue/255, alpha: 1)
+		return ligher(0 - level)
 	}
 	
 	public func mixed(color:UIColor) -> UIColor {
-		let (red,green,blue) = self.RGB
-		let (red1,green1,blue1) = color.RGB
-		return UIColor((red+red1)/2, (green+green1)/2, (blue+blue1)/2)
+		let (r,g,b, a) = self.RGBA
+		let (r1,g1,b1, a1) = color.RGBA
+		return UIColor(r:avg(r, r1).limit(start: 0, end: 255),
+		               g:avg(g, g1).limit(start: 0, end: 255),
+		               b:avg(b, b1).limit(start: 0, end: 255),
+		               a:avg(a, a1).limit(start: 0, end: 100))
 	}
 	
 	public var image:UIImage? {
