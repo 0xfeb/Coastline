@@ -11,10 +11,33 @@ import UIKit
 public class CLViewWithAttribute {
 	weak var view:UIView?
 	var attribute:NSLayoutAttribute
+	var contraint:CGFloat = 0.0
+	var multiplier:CGFloat = 1.0
 	
 	init(view:UIView, attribute:NSLayoutAttribute) {
 		self.view = view
 		self.attribute = attribute
+	}
+	
+	func equal(constant:CGFloat) -> NSLayoutConstraint? {
+		guard let view = view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: constant)
+		c.isActive = true
+		return c
+	}
+	
+	func equalLess(constant:CGFloat) -> NSLayoutConstraint? {
+		guard let view = view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .width, multiplier: 1.0, constant: constant)
+		c.isActive = true
+		return c
+	}
+	
+	func equalGreater(constant:CGFloat) -> NSLayoutConstraint? {
+		guard let view = view else { return nil }
+		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .width, multiplier: 1.0, constant: constant)
+		c.isActive = true
+		return c
 	}
 	
 	func equal(_ attr:CLViewWithAttribute, constant:CGFloat = 0.0, multiplier:CGFloat = 1.0) -> NSLayoutConstraint?  {
@@ -36,6 +59,56 @@ public class CLViewWithAttribute {
 		let c = NSLayoutConstraint(item: view, attribute: self.attribute, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: aview, attribute: attr.attribute, multiplier: multiplier, constant: constant)
 		c.isActive = true
 		return c
+	}
+}
+
+public extension CLViewWithAttribute {
+	public static func * (a:CLViewWithAttribute, m:CGFloat) -> CLViewWithAttribute {
+		let n = a
+		n.multiplier = m
+		return n
+	}
+	
+	public static func + (a:CLViewWithAttribute, n:CGFloat) -> CLViewWithAttribute {
+		let p = a
+		p.contraint = n
+		return p
+	}
+	
+	public static func == (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
+		if let c = n0.equal(n1, constant: n0.contraint, multiplier: n0.multiplier) {
+			n0.view?.addConstraint(c)
+		}
+	}
+	
+	public static func >= (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
+		if let c = n0.equalGreater(n1, constant: n0.contraint, multiplier: n0.multiplier) {
+			n0.view?.addConstraint(c)
+		}
+	}
+	
+	public static func <= (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
+		if let c = n0.equalLess(n1, constant: n0.contraint, multiplier: n0.multiplier) {
+			n0.view?.addConstraint(c)
+		}
+	}
+	
+	public static func == (n0:CLViewWithAttribute, n:CGFloat) {
+		if let c = n0.equal(constant: n) {
+			n0.view?.addConstraint(c)
+		}
+	}
+	
+	public static func >= (n0:CLViewWithAttribute, n:CGFloat) {
+		if let c = n0.equalLess(constant: n) {
+			n0.view?.addConstraint(c)
+		}
+	}
+	
+	public static func <= (n0:CLViewWithAttribute, n:CGFloat) {
+		if let c = n0.equalGreater(constant: n) {
+			n0.view?.addConstraint(c)
+		}
 	}
 }
 
@@ -163,6 +236,29 @@ public extension UIView {
 	public func autoHeightConstraint(height:CGFloat) {
 		if let n = self.constraints.index(where: { $0.firstAttribute == .height })  {
 			self.constraints[n].constant = height
+		}
+	}
+	
+	public func setHConstraints(list:[UIView], width:CGFloat, gap:CGFloat) {
+		if let first = list.first {
+			first.l_left + gap == self.l_left
+			first.l_top == self.l_top
+			first.l_bottom == self.l_bottom
+			first.l_width == width
+		}
+		
+		_ = list.reduce(nil) { (prev:UIView?, next:UIView)->UIView? in
+			if let prev = prev {
+				next.l_left + gap == prev.l_right
+				next.l_top == self.l_top
+				next.l_bottom == self.l_bottom
+				next.l_width == width
+			}
+			return next
+		}
+		
+		if let last = list.last, self is UIScrollView {
+			last.l_right >= self.l_right
 		}
 	}
 }
