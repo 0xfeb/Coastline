@@ -77,19 +77,19 @@ public extension CLViewWithAttribute {
 	
 	public static func == (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
 		if let c = n0.equal(n1, constant: n0.contraint, multiplier: n0.multiplier) {
-			n0.view?.addConstraint(c)
+			n1.view?.addConstraint(c)
 		}
 	}
 	
 	public static func >= (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
 		if let c = n0.equalGreater(n1, constant: n0.contraint, multiplier: n0.multiplier) {
-			n0.view?.addConstraint(c)
+			n1.view?.addConstraint(c)
 		}
 	}
 	
 	public static func <= (n0:CLViewWithAttribute, n1:CLViewWithAttribute) {
 		if let c = n0.equalLess(n1, constant: n0.contraint, multiplier: n0.multiplier) {
-			n0.view?.addConstraint(c)
+			n1.view?.addConstraint(c)
 		}
 	}
 	
