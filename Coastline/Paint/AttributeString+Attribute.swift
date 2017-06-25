@@ -12,6 +12,17 @@ public extension NSAttributedString {
 	public convenience init(str:String, attr:CLAttributes) {
 		self.init(string: str, attributes: attr.dict)
 	}
+	
+	public func calcSize(size:CGSize) -> CGSize {
+		let textContainer = NSTextContainer(size: size)
+		let textStorage = NSTextStorage(attributedString: self)
+		let layoutManager = NSLayoutManager()
+		layoutManager.addTextContainer(textContainer)
+		textStorage.addLayoutManager(layoutManager)
+		
+		let rect = layoutManager.usedRect(for: textContainer)
+		return CGSize(width:ceil(rect.size.width	), height:ceil(rect.size.height))
+	}
 }
 
 // 文本属性
@@ -208,14 +219,5 @@ public class CLAttributes {
 		return nil
 	}
 	
-	public func calcSize(size:CGSize) -> CGSize {
-		let textContainer = NSTextContainer(size: size)
-		let textStorage = NSTextStorage(attributedString: self)
-		let layoutManager = NSLayoutManager()
-		layoutManager.addTextContainer(textContainer)
-		textStorage.addLayoutManager(layoutManager)
-		
-		let rect = layoutManager.usedRect(for: textContainer)
-		return CGSize(width:ceil(rect.size.width	), height:ceil(rect.size.height))
-	}
+	
 }
