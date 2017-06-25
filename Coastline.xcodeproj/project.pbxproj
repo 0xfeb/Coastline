@@ -280,6 +280,7 @@
 		6C7B7F221E96228C00889B14 /* zenburn.css in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B7E221E96228C00889B14 /* zenburn.css */; };
 		6C7B7F231E96228C00889B14 /* marked.js in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B7E231E96228C00889B14 /* marked.js */; };
 		6C82EC971E683EC200E79336 /* Rect+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C82EC961E683EC200E79336 /* Rect+Fast.swift */; };
+		6C8751C91EFF4542004A4E28 /* Device+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8751C81EFF4542004A4E28 /* Device+Type.swift */; };
 		6C8BC0FD1E025EC90083042F /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC0FC1E025EC90083042F /* Rate.swift */; };
 		6C8BC1031E028B010083042F /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8BC1021E028B010083042F /* UIGestureRecognizer.swift */; };
 		6C8F26491E9B9159005C8CE6 /* CLSpiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F26481E9B9159005C8CE6 /* CLSpiderView.swift */; };
@@ -656,6 +657,7 @@
 		6C7B7E221E96228C00889B14 /* zenburn.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = zenburn.css; sourceTree = "<group>"; };
 		6C7B7E231E96228C00889B14 /* marked.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = marked.js; sourceTree = "<group>"; };
 		6C82EC961E683EC200E79336 /* Rect+Fast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rect+Fast.swift"; sourceTree = "<group>"; };
+		6C8751C81EFF4542004A4E28 /* Device+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Type.swift"; sourceTree = "<group>"; };
 		6C8BC0FC1E025EC90083042F /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		6C8BC1021E028B010083042F /* UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer.swift; sourceTree = "<group>"; };
 		6C8F26481E9B9159005C8CE6 /* CLSpiderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLSpiderView.swift; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 				6CB8DAE31E34B35F00F18D26 /* Pay.swift */,
 				6C4DE6481E687DEC000DC6CD /* Timer+Fast.swift */,
 				6C750A4C1EED493800275331 /* SystemConfig.swift */,
+				6C8751C81EFF4542004A4E28 /* Device+Type.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1689,6 +1692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CB8DAE41E34B35F00F18D26 /* Pay.swift in Sources */,
+				6C8751C91EFF4542004A4E28 /* Device+Type.swift in Sources */,
 				6CE8EA881DBB5F2D00C952E2 /* PauseTimer.swift in Sources */,
 				6CA890BE1E8CA9B0000CBA6A /* DeviceId.swift in Sources */,
 				6CB0994D1E03DB4800576A12 /* String+Json.swift in Sources */,
