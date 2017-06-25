@@ -200,4 +200,11 @@ public class CLAttributes {
 	static public func + (attr0:CLAttributes, attr1:CLAttributes) -> CLAttributes {
 		return attr0.combine(attr1)
 	}
+	
+	public var imageString : NSAttributedString? {
+		if let attach = attachment {
+			return NSAttributedString(attachment: attach)
+		}
+		return nil
+	}
 }
