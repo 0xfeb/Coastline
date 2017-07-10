@@ -52,4 +52,27 @@ public extension UIAlertController {
 			}
 		}
 	}
+    
+    func show(_ viewController:UIViewController?, rect:CGRect, inView:UIView) {
+        if let popover = self.popoverPresentationController {
+            popover.sourceView = inView
+            popover.sourceRect = rect
+        }
+        OperationQueue.main.addOperation {
+            if let nv = viewController?.navigationController {
+                nv.present(self, animated: true, completion: nil)
+            } else {
+                viewController?.present(self, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func show(_ viewController:UIViewController?, centerInView view:UIView) {
+        return show(viewController, rect:CGRect.init(center: view.bounds.center, size: CGSize(width:320, height:240)), inView:view)
+    }
+    
+    func show(_ viewController:UIViewController?, bellowUnderView view:UIView) {
+        let rect = view.frame.outside(.maxYEdge, width: 320)
+        return show(viewController, rect:rect, inView:view)
+    }
 }

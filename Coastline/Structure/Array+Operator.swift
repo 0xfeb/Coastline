@@ -157,7 +157,11 @@ public extension Array {
 			let j = Int(arc4random_uniform(UInt32(count-i)))+i
 			
 			if i != j {
-				swap(&self[i], &self[j])
+                let ni = self[i]
+                let nj = self[j]
+                self[i] = nj
+                self[j] = ni
+				//swap(&self[i], &self[j])
 			}
 		}
 	}

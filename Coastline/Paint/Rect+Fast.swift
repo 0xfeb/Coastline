@@ -33,3 +33,15 @@ public extension CGRect {
 		self.init(origin: CGPoint(x: center.x - size.width/2, y: center.y - size.height/2), size: size)
 	}
 }
+
+public func point(_ x:CGFloat, _ y:CGFloat) -> CGPoint {
+    return CGPoint(x: x, y: y)
+}
+
+public func size(_ w:CGFloat, _ h:CGFloat) -> CGSize {
+    return CGSize(width:w, height:h)
+}
+
+public func rect(_ x:CGFloat, _ y:CGFloat, _ w:CGFloat, _ h:CGFloat) -> CGRect {
+    return CGRect(x: x, y: y, width: w, height: h)
+}
