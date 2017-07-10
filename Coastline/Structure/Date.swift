@@ -100,6 +100,39 @@ public extension Date {
 		let year = self.year
 		return curYear - year + 1
 	}
+	
+	var todayFirstTime : Date {
+		let str = self.dateString + " 00:00:00"
+		return Date(string: str) ?? self
+	}
+	
+	var todayLastTime : Date {
+		let str = self.dateString + " 23:59:59"
+		return Date(string: str) ?? self
+	}
+	
+	var shortString:String {
+		let curDate = Date()
+		let t = curDate.timeIntervalSince(self)
+		if t < 60 {
+			return "刚刚"
+		} else if t < 3600 {
+			let t = max(Int(t / 60), 1)
+			return "\(t)分钟前"
+		} else if t < 3600 * 24 {
+			let t = max(Int(t / 3600), 1)
+			return "\(t)小时前"
+		} else {
+			let s = curDate.todayFirstTime.timeIntervalSince(self)
+			if s < 3600 * 24 {
+				return "昨天"
+			} else if s < 3600 * 48 {
+				return "前天"
+			}
+		}
+		
+		return dateString
+	}
 }
 
 func > (l:Date, r:Date) -> Bool {

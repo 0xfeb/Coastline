@@ -77,7 +77,7 @@ public extension UIView {
 	
 	
 	public func startWaiting(title:String, timeout:TimeInterval = 5.0) {
-		killWaiting()
+		endWaiting()
 		
 		let backView = UIView(frame: self.bounds)
 		backView.tag = 12301
@@ -115,11 +115,11 @@ public extension UIView {
 		barView.addSubview(label)
 		
 		if timeout > 0.0 {
-			Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(killWaiting), userInfo: nil, repeats: false)
+			Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(endWaiting), userInfo: nil, repeats: false)
 		}
 	}
 	
-	public func killWaiting() {
+	public func endWaiting() {
 		let view = self.viewWithTag(12301)
 		view?.removeFromSuperview()
 	}
@@ -151,7 +151,7 @@ public extension UIView {
 		}
 	}
 	
-	public func stopHud() {
+	public func endHud() {
 		let view = self.viewWithTag(12302)
 		view?.unPopOut(0.2, completion: { [weak self] (r) in
 			self?.killHud()

@@ -53,7 +53,7 @@ public extension UIApplication {
 	public var agentString:String {
 		let system = "iOS"
 		let sysVersion = systemVersion
-		let mVersion = UIDevice.current.name
+		let mVersion = UIDevice.current.name.base64Enc ?? ""
 		let appVersion = self.appVersion
 		let buildVersion = self.buildVerison
 		let network = networkType

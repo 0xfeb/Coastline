@@ -14,8 +14,9 @@ public extension NSAttributedString {
 		               NSCharacterEncodingDocumentAttribute:  String.Encoding.utf8.rawValue] as [String : Any]
 		if let data = html.data(using: .utf8, allowLossyConversion: true) {
 			try? self.init(data: data, options: options, documentAttributes: nil)
+		} else {
+			return nil
 		}
-		return nil
 	}
 	
 	@available(iOS 9.0, *)

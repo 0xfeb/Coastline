@@ -40,4 +40,22 @@ public extension UIView {
 		UIGraphicsEndImageContext()
 		return image
 	}
+	
+	public var currentFocusSubView:UIView? {
+		func treeSub(view:UIView) -> UIView? {
+			if view.isFirstResponder {
+				return view
+			}
+			
+			for v in view.subviews {
+				if let focusView = treeSub(view: v) {
+					return focusView
+				}
+			}
+			
+			return nil
+		}
+		
+		return treeSub(view: self)
+	}
 }

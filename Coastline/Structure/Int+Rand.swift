@@ -15,7 +15,7 @@ public func arc4random<T:Integer> (type: T.Type) -> T {
 }
 
 public extension UInt64 {
-	static func random(lower: UInt64 = min, upper: UInt64 = max) -> UInt64 {
+	public static func random(lower: UInt64 = min, upper: UInt64 = max) -> UInt64 {
 		var m: UInt64
 		let u = upper - lower
 		var r = arc4random(type: UInt64.self)

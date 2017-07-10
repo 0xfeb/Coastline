@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Int {
-	init(hexChar:Character) {
+	public init(hexChar:Character) {
 		switch hexChar {
 		case "0": self = 0
 		case "1": self = 1
@@ -31,7 +31,7 @@ public extension Int {
 		}
 	}
 	
-	init(hex:String) {
+	public init(hex:String) {
 		var total:Int = 0
 		for char in hex.characters {
 			let c:Int = Int(hexChar: char)
@@ -43,5 +43,20 @@ public extension Int {
 		}
 		
 		self = total
+	}
+	
+	public var shortString:String {
+		if self > 100_000_000 {
+			let n = Float(self) / 100_000_000
+			return String(format:"%.1f亿", n)
+		} else if self > 10_000 {
+			let n = Float(self) / 10_000
+			return String(format:"%.1f万", n)
+		} else if self > 1_000 {
+			let n = Float(self) / 1_000
+			return String(format:"%.0f千", n)
+		} else {
+			return "\(self)"
+		}
 	}
 }

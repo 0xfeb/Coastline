@@ -28,8 +28,16 @@ public class CLProc<T> {
 }
 
 //将同步动作封装成异步模式的一种表达方式
-extension OperationQueue {
+public extension OperationQueue {
 	func proc<T>(_ method:@escaping ()->T?) -> CLProc<T> {
 		return CLProc(queue: self, method: method)
 	}
+}
+
+public func sub(_ method:@escaping ()->()) {
+	OperationQueue().addOperation(method)
+}
+
+public func ui(_ method:@escaping ()->()) {
+	OperationQueue.main.addOperation(method)
 }

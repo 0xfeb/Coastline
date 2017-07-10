@@ -9,7 +9,7 @@
 import UIKit
 
 public extension CGRect {
-	func squreOutside() -> CGRect {
+	public func squreOutside() -> CGRect {
 		if self.width > self.height {
 			return CGRect(x: self.minX, y: self.minY - (self.width-self.height)/2.0, width: self.width, height: self.width)
 		} else {
@@ -17,7 +17,7 @@ public extension CGRect {
 		}
 	}
 	
-	func squreInside() -> CGRect {
+	public func squreInside() -> CGRect {
 		if self.width > self.height {
 			return CGRect(x: self.minX + (self.width-self.height)/2.0, y: self.minY, width: self.height, height: self.height)
 		} else {
@@ -25,7 +25,7 @@ public extension CGRect {
 		}
 	}
 	
-	func inside(_ edge:CGRectEdge, width:CGFloat) -> CGRect {
+	public func inside(_ edge:CGRectEdge, width:CGFloat) -> CGRect {
 		switch edge {
 		case .minXEdge:
 			return CGRect(x: minX, y: minY, width: width, height: height)
@@ -38,7 +38,7 @@ public extension CGRect {
 		}
 	}
 	
-	func outside(_ edge:CGRectEdge, width:CGFloat) -> CGRect {
+	public func outside(_ edge:CGRectEdge, width:CGFloat) -> CGRect {
 		switch edge {
 		case .minXEdge:
 			return CGRect(x: minX - width, y: minY, width: width, height: self.height)
@@ -49,5 +49,30 @@ public extension CGRect {
 		case .maxYEdge:
 			return CGRect(x: minX, y: maxY, width: self.width, height: width)
 		}
+	}
+	
+	public func inside(_ edge:CGRectEdge, size:CGSize) -> CGRect {
+		return inside(edge, width: size.width).resizeByCenter(size: size)
+	}
+	
+	public func outside(_ edge:CGRectEdge, size:CGSize) -> CGRect {
+		return outside(edge, width: size.width).resizeByCenter(size: size)
+	}
+	
+	public func move(offset:CGSize) -> CGRect {
+		let pt = CGPoint(x:self.center.x + offset.width, y:self.center.y + offset.height)
+		return CGRect(center: pt, size: self.size)
+	}
+	
+	public mutating func moved(offset:CGSize) {
+		center = CGPoint(x:self.center.x + offset.width, y:self.center.y + offset.height)
+	}
+	
+	public func resizeByCenter(size:CGSize) -> CGRect {
+		return CGRect(center: self.center, size: size)
+	}
+	
+	public mutating func resizedByCenter(size:CGSize) {
+		self = CGRect(center: self.center, size: size)
 	}
 }
