@@ -73,6 +73,6 @@ public extension UIAlertController {
     
     func show(_ viewController:UIViewController?, bellowUnderView view:UIView) {
         let rect = view.frame.outside(.maxYEdge, width: 320)
-        return show(viewController, rect:rect, inView:view)
+        return show(viewController, rect:rect, inView:view.superview ?? view)
     }
 }
