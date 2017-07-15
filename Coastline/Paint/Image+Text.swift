@@ -17,7 +17,7 @@ public extension String {
         let backRect = CGRect(origin:CGPoint(), size:size)
         canvas.setFillColor(backColor.cgColor)
         canvas.fill(backRect)
-
+        
         let attr = CLAttributes()
         if #available(iOS 8.2, *) {
             let font = UIFont.systemFont(ofSize: size.width / 4.0, weight: UIFontWeightLight)
@@ -28,10 +28,12 @@ public extension String {
         }
         attr.alignment = NSTextAlignment.center
         attr.textColor = color
-        self.drawInRect(backRect, attr: attr.dict)
-
+        let textSize = self.textRectInSize(size, font: attr.font!, wordwarp: .byCharWrapping)
+        let textRect = CGRect(origin:CGPoint(x:0, y:(size.height - textSize.height) / 2.0), size:size)
+        self.drawInRect(textRect, attr: attr.dict)
+        
         let img = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
-
+        
         UIGraphicsEndImageContext()
         
         if let img = img {
