@@ -51,4 +51,10 @@ public extension String {
 		}
 		return true
 	}
+    
+    public var isChinese: Bool {
+        let match = "(^[\u{4e00}-\u{9fa5}]+$)"
+        let predicate = NSPredicate(format: "SELF matches %@", match)
+        return predicate.evaluate(with: self)
+    }
 }
