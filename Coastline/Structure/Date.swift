@@ -69,6 +69,13 @@ public extension Date {
 		format.timeZone = TimeZone.autoupdatingCurrent
 		return format.string(from: self)
 	}
+    
+    var shortDateString: String {
+        let format = DateFormatter()
+        format.dateFormat = "MMdd"
+        format.timeZone = TimeZone.autoupdatingCurrent
+        return format.string(from: self)
+    }
 	
 	var timeString: String {
 		let format = DateFormatter()
