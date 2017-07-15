@@ -297,6 +297,7 @@
 		6CBC948B1E5EAC8D000F0ECB /* Int+Rand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBC948A1E5EAC8C000F0ECB /* Int+Rand.swift */; };
 		6CC19ADF1E3860880020E3A3 /* WebView+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC19ADE1E3860880020E3A3 /* WebView+Header.swift */; };
 		6CC1FEF91E5FE8F7009E00DA /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1FEF81E5FE8F7009E00DA /* DefaultConfig.swift */; };
+		6CD3E1281F19B7A000C71533 /* Image+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3E1271F19B7A000C71533 /* Image+Text.swift */; };
 		6CD652D21E0BDFEF003C026B /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD652D11E0BDFEF003C026B /* Counter.swift */; };
 		6CDBCF001E6F871000C681A5 /* ScrollView+Fast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDBCEFF1E6F871000C681A5 /* ScrollView+Fast.swift */; };
 		6CE8EA3B1DBB5D4000C952E2 /* Coastline.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CE8EA391DBB5D4000C952E2 /* Coastline.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -679,6 +680,7 @@
 		6CBC948A1E5EAC8C000F0ECB /* Int+Rand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Rand.swift"; sourceTree = "<group>"; };
 		6CC19ADE1E3860880020E3A3 /* WebView+Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+Header.swift"; sourceTree = "<group>"; };
 		6CC1FEF81E5FE8F7009E00DA /* DefaultConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
+		6CD3E1271F19B7A000C71533 /* Image+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Text.swift"; sourceTree = "<group>"; };
 		6CD652D11E0BDFEF003C026B /* Counter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		6CDBCEFF1E6F871000C681A5 /* ScrollView+Fast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScrollView+Fast.swift"; sourceTree = "<group>"; };
 		6CE8EA361DBB5D4000C952E2 /* Coastline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Coastline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1163,6 +1165,7 @@
 				6CE8EA611DBB5EBB00C952E2 /* Context+Draw.swift */,
 				6CE8EA621DBB5EBB00C952E2 /* Context+Frame.swift */,
 				6CE8EA6D1DBB5ECF00C952E2 /* Image+Color.swift */,
+				6CD3E1271F19B7A000C71533 /* Image+Text.swift */,
 				6CE8EA6E1DBB5ECF00C952E2 /* Image+File.swift */,
 				6CFFDA501E8E62C90036AAF9 /* Image+Filter.swift */,
 				6CE8EA791DBB5EEB00C952E2 /* MutableAttributeString+Warpper.swift */,
@@ -1710,6 +1713,7 @@
 				6C8F26491E9B9159005C8CE6 /* CLSpiderView.swift in Sources */,
 				6CE8EA8D1DBB5F3900C952E2 /* Rect+Position.swift in Sources */,
 				6C6FE4AD1E890E1D00CD3206 /* Layer+Animation.swift in Sources */,
+				6CD3E1281F19B7A000C71533 /* Image+Text.swift in Sources */,
 				6CE8EA7A1DBB5EEB00C952E2 /* MutableAttributeString+Warpper.swift in Sources */,
 				6CE8EA641DBB5EBB00C952E2 /* Context+Frame.swift in Sources */,
 				6CE8EA561DBB5E7E00C952E2 /* BezierPath+Line.swift in Sources */,
