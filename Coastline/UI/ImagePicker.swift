@@ -10,7 +10,6 @@ import UIKit
 import MobileCoreServices
 import Photos
 
-@available(iOS 9.1, *)
 public struct ImagePickerResult {
 	public enum MediaType : String {
 		case image = "image"
@@ -23,9 +22,9 @@ public struct ImagePickerResult {
 	public var crop:CGRect?
 	public var url:NSURL?
 	public var meta:[String:Any]?
-	public var livePhoto:PHLivePhoto?
+	public var livePhoto:Any?
 	
-	public init(_ dict:[String:Any]) {
+    public init(_ dict:[String:Any]) {
 		if let mt = dict[UIImagePickerControllerMediaType] as? String {
 			type = MediaType(rawValue: mt)
 		}
@@ -50,8 +49,12 @@ public struct ImagePickerResult {
 			meta = m
 		}
 		
-		if let lp = dict[UIImagePickerControllerLivePhoto] as? PHLivePhoto {
-			livePhoto = lp
-		}
+        if #available(iOS 9.1, *) {
+            if let lp = dict[UIImagePickerControllerLivePhoto] as? PHLivePhoto {
+                livePhoto = lp
+            }
+        } else {
+            // Fallback on earlier versions
+        }
 	}
 }
