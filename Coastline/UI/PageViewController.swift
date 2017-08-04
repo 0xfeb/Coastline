@@ -9,7 +9,7 @@
 import UIKit
 
 open class CLPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-	var pages:[UIViewController] = []
+	public var pages:[UIViewController] = []
 	open var cycleMode:Bool = false
 	open var onSelectPage:(Int) -> () = { _ in }
 	open var animated = true
