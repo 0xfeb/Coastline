@@ -24,6 +24,8 @@ class TransContainer : NSObject {
 		case dismissBottomScale
 		case presentPop
 		case dismissPop
+        case presentCycle
+        case dismissCycle
 	}
 	
 	var timeout:TimeInterval = 0.2
@@ -32,6 +34,7 @@ class TransContainer : NSObject {
 	var scaleBottom:(scale:CGFloat, height:CGFloat)?
 	var scaleMiddle:(constraint:NSLayoutConstraint, height:CGFloat)?
 	var popScale:(scale:CGFloat, color:UIColor)?
+    var popCycle:CGRect?
 	
 	init(_ t:AnimationType, duration:TimeInterval) {
 		type = t
@@ -305,6 +308,54 @@ class TransContainer : NSObject {
 			items.to.view.frame = originFrame
 		}
 	}
+    
+    func animationPresentCycle(context:UIViewControllerContextTransitioning) {
+        guard let items = itemsFromContext(context: context), let popCycle = popCycle else { return }
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(ovalIn: popCycle).cgPath
+        items.to.view.layer.mask = maskLayer
+        
+        items.from.view.isUserInteractionEnabled = false
+        //        items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale * 0.8, height:items.container.bounds.height * popScale.scale * 0.8))
+        //items.to.view.transform = CGAffineTransform(scaleX: popScale.scale * 0.8, y: popScale.scale * 0.8)
+        let rate = items.container.frameHeight / popCycle.height
+        UIView.animate(withDuration: transitionDuration(using: context),
+                       delay: 0,
+                       usingSpringWithDamping: 0.55,
+                       initialSpringVelocity: 1 / 0.88,
+                       options: [],
+                       animations: {
+                        maskLayer.transform = CATransform3DMakeScale(rate, rate, 1.0)
+        }) { (finish) in
+            context.completeTransition(!context.transitionWasCancelled)
+            
+            items.from.view.removeFromSuperview()
+            
+            items.to.view.layer.mask = nil
+        }
+    }
+    
+    func animationDismissCycle(context:UIViewControllerContextTransitioning) {
+        guard let items = itemsFromContext(context: context), let popCycle = popCycle else { return }
+        
+        let rate = items.container.frameHeight / popCycle.height
+        
+        items.from.view.isUserInteractionEnabled = false
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(ovalIn: popCycle).cgPath
+        maskLayer.transform = CATransform3DMakeScale(rate, rate, 1.0)
+        items.from.view.layer.mask = maskLayer
+        UIView.animate(withDuration: transitionDuration(using: context),
+                       animations: {
+                        maskLayer.transform = CATransform3DIdentity
+        }) { (finish) in
+            items.from.view.removeFromSuperview()
+            items.to.view.isUserInteractionEnabled = true
+            
+            context.completeTransition(!context.transitionWasCancelled)
+        }
+    }
 }
 
 extension TransContainer : UIViewControllerAnimatedTransitioning {
@@ -342,6 +393,10 @@ extension TransContainer : UIViewControllerAnimatedTransitioning {
 			animationPresentPop(context: transitionContext)
 		case .dismissPop:
 			animationDismissPop(context: transitionContext)
+        case .presentCycle:
+            animationPresentCycle(context: transitionContext)
+        case .dismissCycle:
+            animationDismissCycle(context: transitionContext)
 		}
 	}
 }
