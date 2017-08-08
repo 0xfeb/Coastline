@@ -58,6 +58,12 @@ class TransContainer : NSObject {
 		timeout = duration
 		popScale = s
 	}
+    
+    init(_ t:AnimationType, duration:TimeInterval, cycle:CGRect) {
+        type = t
+        timeout = duration
+        popCycle = cycle
+    }
 	
 	private func itemsFromContext(context:UIViewControllerContextTransitioning) -> (from:UIViewController, to:UIViewController, container:UIView)? {
 		guard let from = context.viewController(forKey: UITransitionContextViewControllerKey.from), let to = context.viewController(forKey: UITransitionContextViewControllerKey.to) else { return nil }
@@ -539,4 +545,22 @@ extension CLTransPopDelegate : UIViewControllerTransitioningDelegate {
 	}
 }
 
+public class CLTransCycleDelegate : NSObject {
+    var duration:TimeInterval
+    var cycle:CGRect
+    
+    public init(duration d:TimeInterval, cycle c:CGRect) {
+        duration = d
+        cycle = c
+    }
+}
 
+extension CLTransCycleDelegate : UIViewControllerTransitioningDelegate {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransContainer(.presentCycle, duration: duration, cycle: cycle)
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransContainer(.dismissCycle, duration: duration, cycle: cycle)
+    }
+}
