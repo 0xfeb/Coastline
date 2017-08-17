@@ -112,6 +112,28 @@ public extension Array {
 		}
 		return true
 	}
+    
+    public enum SignType {
+        case head   //数组头部
+        case body   //数组中间
+        case tail   //数组尾部
+        case only   //单数组对象(既是头部, 又是尾部)
+    }
+    
+    public func forSign(_ event:@escaping (_ value:Element, _ type:SignType)->Bool) {
+        guard let c = self.count, c > 0 else { return }
+        if c == 1 { event(self[1], .only); return }
+        
+        self.enumerated().forEach { (pair) in
+            if pair.offset == 0 {
+                event(pair.element, .head)
+            } else if pair.offset == c - 1 {
+                event(pair.element, .tail)
+            } else {
+                event(pair.element, .body)
+            }
+        }
+    }
 	
 	// 判断任一一个元素符合验证
 	public func isAny(_ checker:(_ value:Element)->Bool) -> Bool {
