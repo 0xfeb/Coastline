@@ -120,8 +120,9 @@ public extension Array {
         case only   //单数组对象(既是头部, 又是尾部)
     }
     
-    public func forSign(_ event:@escaping (_ value:Element, _ type:SignType)->Bool) {
-        guard let c = self.count, c > 0 else { return }
+    public func forSign(_ event:@escaping (_ value:Element, _ type:SignType)->()) {
+        let c = count
+        if c == 0 { return }
         if c == 1 { event(self[1], .only); return }
         
         self.enumerated().forEach { (pair) in
