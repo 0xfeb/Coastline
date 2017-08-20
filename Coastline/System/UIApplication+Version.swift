@@ -67,7 +67,7 @@ public extension UIApplication {
 		}
 		let model = identifier //UIDevice.current.model
 		
-		return "\(system);\(sysVersion);;\(appVersion!);\(buildVersion!);\(network);\(model);"
+		return "\(system);\(sysVersion);\(mVersion);\(appVersion!);\(buildVersion!);\(network);\(model);"
 	}
 	
 	public var networkType:String {

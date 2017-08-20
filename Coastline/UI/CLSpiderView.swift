@@ -9,8 +9,8 @@
 import UIKit
 
 public class CLSpiderView: UIView {
-	public var color0:UIColor = UIColor(colorLiteralRed: 1, green: 0, blue: 1, alpha: 0.4)
-	public var color1:UIColor = UIColor(colorLiteralRed: 0, green: 1, blue: 1, alpha: 0.4)
+	public var color0:UIColor = UIColor(red: 1, green: 0, blue: 1, alpha: 0.4)
+	public var color1:UIColor = UIColor(red: 0, green: 1, blue: 1, alpha: 0.4)
 	var currentRate:CGFloat = 0
 	var timer:Timer?
 	public var scores:[Int] = [0, 0, 0, 0, 0] {

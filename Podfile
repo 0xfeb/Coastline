@@ -12,3 +12,12 @@ target 'Coastline' do
 
 end
 
+target 'TestCoastline' do
+	use_frameworks!
+
+	pod 'KeychainAccess'
+
+	project 'Coastline'
+
+end
+

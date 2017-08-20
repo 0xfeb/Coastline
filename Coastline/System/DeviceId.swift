@@ -10,34 +10,44 @@ import Foundation
 import KeychainAccess
 
 /// 设备唯一ID
-public class DeviceId {
+private class DeviceId {
 	public static var shareInstance:DeviceId = { DeviceId() }()
+    
+    var serviceName:String
+    var keyName:String
+    
+    init() {
+        serviceName = UIApplication.shared.bundleId ?? "com.mixbus.coastline"
+        keyName = UIApplication.shared.curAppInfo.AppId ?? "deviceid"
+    }
 	
-	public func readFromStorage() -> String? {
+	private func readFromStorage() -> String? {
 		let ud = UserDefaults.standard
-		return ud.string(forKey: "inappkey4")
+		return ud.string(forKey: keyName)
 	}
 	
-	public func saveToStorage(deviceId:String) {
-		OperationQueue().addOperation {
+	private func saveToStorage(deviceId:String) {
+		OperationQueue().addOperation { [weak self] in
+            guard let vc = self else { return }
 			let ud = UserDefaults.standard
-			ud.set(deviceId, forKey: "inappkey4")
+			ud.set(deviceId, forKey: vc.keyName)
 			ud.synchronize()
 		}
 	}
 	
-	public func readFromKeyChain() -> String? {
-		let kc = Keychain(service: "com.lez.vpngo")
-		if let key = try? kc.getString("inappkey4") {
+	private func readFromKeyChain() -> String? {
+		let kc = Keychain(service: serviceName)
+		if let key = try? kc.getString(keyName) {
 			return key
 		}
 		return nil
 	}
 	
-	public func saveToKeyChain(deviceId:String) {
-		OperationQueue().addOperation {
-			let kc = Keychain(service: "com.lez.vpngo")
-			try? kc.set(deviceId, key: "inappkey4")
+	private func saveToKeyChain(deviceId:String) {
+		OperationQueue().addOperation {  [weak self] in
+            guard let vc = self else { return }
+			let kc = Keychain(service: vc.serviceName)
+			try? kc.set(deviceId, key: vc.keyName)
 		}
 	}
 	
@@ -58,4 +68,10 @@ public class DeviceId {
 		saveToKeyChain(deviceId: sd)
 		return sd
 	}
+}
+
+public extension UIApplication {
+    public var udid: String {
+        return DeviceId.shareInstance.udid()
+    }
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 public class CLAreaView: UIView {
-	public var colors:[UIColor] = [UIColor(colorLiteralRed: 1, green: 0, blue: 1, alpha: 0.4),
-	                               UIColor(colorLiteralRed: 0, green: 1, blue: 1, alpha: 0.4),
-	                               UIColor(colorLiteralRed: 0, green: 0, blue: 1, alpha: 0.4),
-	                               UIColor(colorLiteralRed: 1, green: 1, blue: 0, alpha: 0.4)]
+	public var colors:[UIColor] = [UIColor(red: 1, green: 0, blue: 1, alpha: 0.4),
+	                               UIColor(red: 0, green: 1, blue: 1, alpha: 0.4),
+	                               UIColor(red: 0, green: 0, blue: 1, alpha: 0.4),
+	                               UIColor(red: 1, green: 1, blue: 0, alpha: 0.4)]
 	
 	var currentRate:CGFloat = 0
 	var timer:Timer?

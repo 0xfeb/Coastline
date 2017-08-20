@@ -1,34 +1,44 @@
 //
 //  ViewController.swift
-//  testCoastline
+//  TestCoastline
 //
-//  Created by 王渊鸥 on 2016/11/12.
-//  Copyright © 2016年 王渊鸥. All rights reserved.
+//  Created by 王渊鸥 on 2017/8/20.
+//  Copyright © 2017年 王渊鸥. All rights reserved.
 //
 
 import UIKit
 import Coastline
-import CoreLocation
 import Photos
 
 class ViewController: UIViewController {
-	let nBag = CLNotificationBag()
-	let scaner = CLBarCodeScanner()
+    var scanner:CLBarCodeScanner?
 
-	@IBOutlet weak var logLabel: UILabel!
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        testDeviceId()
+        testAlbums()
+    }
 
-		scaner.getCode { (codeObj) in
-			print(codeObj)
-		}
-	}
-
-	@IBAction func onClickTest(_ sender: Any) {
-		scaner.start()
-	}
-
+    func testDeviceId() {
+        let s = UIApplication.shared.udid
+        print(s)
+        
+        if s == "0C4C5D6C-B3BD-4E2B-B888-EA3446A5AEAE" {
+            print("success")
+        }
+    }
+    
+    func testAlbums() {
+        let albums = PHAssetCollection.albums()
+        let assets = albums.map({ $0.assets() }).flat().flatMap({ $0.image })
+        print(assets)
+    }
+    
+    func testBarCode() {
+        scanner = CLBarCodeScanner(view: self.view, response: { (obj) in
+            print(obj)
+        })
+    }
 }
 

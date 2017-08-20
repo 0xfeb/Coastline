@@ -10,7 +10,7 @@ import Photos
 
 public extension PHAsset {
 	//从资源获得针对尺寸的图片
-	func imageBySize(_ size:CGSize) -> UIImage? {
+	public func imageBySize(_ size:CGSize) -> UIImage? {
 		let scale = UIScreen.main.scale
 		let size = CGSize(width: size.width*scale, height: size.height*scale)
 		
@@ -28,7 +28,7 @@ public extension PHAsset {
 	}
 	
 	//从资源获得图片
-	func image() -> UIImage? {
+    public var image:UIImage? {
 		let manager = PHImageManager.default()
 		let option = PHImageRequestOptions()
 		var image:UIImage? = nil
@@ -75,7 +75,7 @@ public extension PHAssetCollection {
 	}
 	
 	//从相册中获取资源
-	func assets(_ ascending:Bool) -> [PHAsset] {
+	func assets(_ ascending:Bool = false) -> [PHAsset] {
 		let options = PHFetchOptions()
 		options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: ascending)]
 		

@@ -328,3 +328,11 @@ public extension Array where Element == Double {
 	}
 }
 
+public extension Array where Element:Sequence {
+    public func flat() -> [Element.Element] {
+        return reduce([], { (seq, item) -> [Element.Element] in
+            return seq + item
+        })
+    }
+}
+

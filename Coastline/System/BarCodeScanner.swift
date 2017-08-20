@@ -35,6 +35,20 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 			session?.addOutput(output)
 		}
 	}
+    
+    public convenience init(view:UIView, response:@escaping (AVMetadataMachineReadableCodeObject) -> ()) {
+        self.init()
+        
+        bindLayer(view)
+        start()
+        getCode(response)
+    }
+    
+    deinit {
+        stop()
+        session?.removeInput(input)
+        session?.removeOutput(output)
+    }
 	
 	public func bindLayer(_ view:UIView) {
 		guard let layer = layer else { return }
@@ -48,7 +62,7 @@ public class CLBarCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate 
 	public func getCode(_ response:@escaping (AVMetadataMachineReadableCodeObject) -> ()) {
 		fetchCode = response
 		
-		let queue = DispatchQueue(label: "com.shutong.warehouse", attributes: [])
+		let queue = DispatchQueue(label: UIApplication.shared.bundleId ?? "com.mixbus", attributes: [])
 		output?.setMetadataObjectsDelegate(self, queue: queue)
 	}
 	

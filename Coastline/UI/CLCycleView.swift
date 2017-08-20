@@ -9,9 +9,9 @@
 import UIKit
 
 public class CLCycleView: UIView {
-	public var colors:[UIColor] = [UIColor(colorLiteralRed: 1, green: 0, blue: 1, alpha: 0.9),
-	                               UIColor(colorLiteralRed: 0, green: 1, blue: 1, alpha: 0.9),
-	                               UIColor(colorLiteralRed: 1, green: 1, blue: 0, alpha: 0.9)]
+	public var colors:[UIColor] = [UIColor(red: 1, green: 0, blue: 1, alpha: 0.9),
+	                               UIColor(red: 0, green: 1, blue: 1, alpha: 0.9),
+	                               UIColor(red: 1, green: 1, blue: 0, alpha: 0.9)]
 	
 	var lineWidth:CGFloat = 20.0
 	var currentRate:CGFloat = 0

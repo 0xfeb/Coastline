@@ -80,7 +80,7 @@ class CLBrightView : UIView {
 		//background
 		let br = rect.squreInside()
 		let path = UIBezierPath(roundedRect: br, cornerRadius: 8.0)
-		let bc = UIColor(colorLiteralRed: 0.85, green: 0.85, blue: 0.85, alpha: 0.9)
+		let bc = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 0.9)
 		bc.setFill()
 		path.fill()
 		

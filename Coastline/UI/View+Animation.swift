@@ -81,11 +81,11 @@ public extension UIView {
 		
 		let backView = UIView(frame: self.bounds)
 		backView.tag = 12301
-		backView.backgroundColor = UIColor(colorLiteralRed: 0.2, green: 0.2, blue: 0.2, alpha: 0.4)
+		backView.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.4)
 		self.addSubview(backView)
 		
 		let barView = UIView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
-		barView.backgroundColor = UIColor(colorLiteralRed: 0.4, green: 0.4, blue: 0.4, alpha: 0.9)
+		barView.backgroundColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.9)
 		barView.frameCetner = backView.boundsCenter
 		barView.layer.masksToBounds = true
 		barView.layer.cornerRadius = 8.0
