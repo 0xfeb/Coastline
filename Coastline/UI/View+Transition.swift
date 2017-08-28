@@ -323,8 +323,6 @@ class TransContainer : NSObject {
         items.to.view.layer.mask = maskLayer
         
         items.from.view.isUserInteractionEnabled = false
-        //        items.to.view.frame = CGRect(center:items.container.center, size:CGSize(width:items.container.bounds.width * popScale.scale * 0.8, height:items.container.bounds.height * popScale.scale * 0.8))
-        //items.to.view.transform = CGAffineTransform(scaleX: popScale.scale * 0.8, y: popScale.scale * 0.8)
         let rate = items.container.frameHeight / popCycle.height
         UIView.animate(withDuration: transitionDuration(using: context),
                        delay: 0,
